@@ -40,6 +40,7 @@ public class FileUtilities {
         return result;
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     public static boolean directoryExists(String directory)
     {
         // Check if the directory exists, if not, create it

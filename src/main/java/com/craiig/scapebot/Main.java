@@ -1,5 +1,6 @@
 package com.craiig.scapebot;
 
+import com.craiig.scapebot.listeners.ChatListener;
 import com.samczsun.skype4j.Skype;
 import com.samczsun.skype4j.SkypeBuilder;
 
@@ -21,16 +22,24 @@ class Main {
     public static void main(String[] args) {
 
         FileUtilities.directoryExists("data");
-        ArrayList<String> details = FileUtilities.readTextFile("data/login.txt");
+        ArrayList<String> loginDetails = FileUtilities.readTextFile("data/login.txt");
 
-        Skype skype = new SkypeBuilder(details.get(0), details.get(1)).withAllResources().build();
+        Skype skype = new SkypeBuilder(loginDetails.get(0), loginDetails.get(1)).withAllResources().build();
 
         try{
+
             skype.login();
 
             System.out.println("Logged in");
 
-            skype.subscribe();
+            skype.getEventDispatcher().registerListener(new ChatListener(skype));
+
+            try{
+                skype.subscribe();
+            }catch (IllegalStateException ex){
+                System.out.println("Failed to subscribe...");
+            }
+
             skype.setVisibility(Visibility.ONLINE);
 
         } catch (ConnectionException | InvalidCredentialsException | NotParticipatingException ex){
