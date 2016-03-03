@@ -1,9 +1,6 @@
 package com.craiig.scapebot.utilities;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -38,6 +35,25 @@ public class FileUtilities {
         }
 
         return result;
+    }
+
+    public static void writeToTextFile(String directory, String fileName, String text)
+    {
+        if (!directoryExists(directory))
+        {
+            System.out.println("Cannot write com file " + fileName + " in directory " + directory + "! The directory doesn't exist.");
+            return;
+        }
+
+        try
+        {
+            PrintWriter out = new PrintWriter(new FileWriter(directory + fileName, true));
+            out.println(text);
+            out.close();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     @SuppressWarnings("UnusedReturnValue")

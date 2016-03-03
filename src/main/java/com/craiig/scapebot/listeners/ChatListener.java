@@ -2,7 +2,6 @@ package com.craiig.scapebot.listeners;
 
 import com.craiig.scapebot.commands.Commands;
 import com.samczsun.skype4j.Skype;
-import com.samczsun.skype4j.chat.messages.ChatMessage;
 import com.samczsun.skype4j.events.EventHandler;
 import com.samczsun.skype4j.events.Listener;
 import com.samczsun.skype4j.events.chat.message.MessageEvent;
@@ -28,13 +27,24 @@ public class ChatListener implements Listener {
 
         try {
 
-            System.out.println("Message: '" + e.getMessage().getContent() + "' sent by " + e.getMessage().getSender().getDisplayName());
+            //Store words to search in a text file (phrase, chat, response)
+            //Load words into a data structure
+            //loop over each word for that chat, in the given message
+            //if it contains a word, send the response
 
-            if(e.getMessage().getContent().asPlaintext().startsWith("!") && e.getMessage().getContent().asPlaintext().length() > 1){
+            //how to deal with responses being updated dynamically?
+            //how to add new words and reload list?
 
-                String command = e.getMessage().getContent().asPlaintext().trim().substring(1).split(" ")[0].toLowerCase();
 
-                switchCommand(command, e.getMessage());
+
+            System.out.println("Message: '" + e.getMessage().getContent() + "' sent by " + e.getMessage().getSender().getDisplayName() + " in (" + e.getMessage().getSender().getChat().getIdentity() + ")");
+
+            if(!e.getMessage().getContent().asPlaintext().startsWith("!") && !e.getMessage().getSender().getUsername().equals(skype.getUsername())){
+
+                if(e.getMessage().getContent().asPlaintext().contains("lols")){
+                    e.getChat().sendMessage("You sent a message containing -> 'lols'");
+                }
+
             }
 
         } catch (ConnectionException ex) {
@@ -43,23 +53,5 @@ public class ChatListener implements Listener {
 
     }
 
-    private void switchCommand(String command, ChatMessage message) throws ConnectionException{
-
-        switch (command){
-
-            case "hey":
-                commands.hey(message);
-                break;
-
-            case "shutdown":
-                commands.shutdown(message);
-                break;
-
-            default:
-                System.out.println("Not a recognised command");
-                break;
-        }
-
-    }
 
 }

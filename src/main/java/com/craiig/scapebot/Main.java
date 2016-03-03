@@ -1,6 +1,8 @@
 package com.craiig.scapebot;
 
 import com.craiig.scapebot.listeners.ChatListener;
+import com.craiig.scapebot.listeners.CommandListener;
+import com.craiig.scapebot.timers.RSSChecker;
 import com.samczsun.skype4j.Skype;
 import com.samczsun.skype4j.SkypeBuilder;
 
@@ -33,6 +35,7 @@ class Main {
             System.out.println("Logged in");
 
             skype.getEventDispatcher().registerListener(new ChatListener(skype));
+            skype.getEventDispatcher().registerListener(new CommandListener(skype));
 
             try{
                 skype.subscribe();
@@ -41,6 +44,9 @@ class Main {
             }
 
             skype.setVisibility(Visibility.ONLINE);
+
+            RSSChecker rss = new RSSChecker(skype);
+            rss.start();
 
         } catch (ConnectionException | InvalidCredentialsException | NotParticipatingException ex){
             System.err.println("An error occurred: " + ex.getMessage());
