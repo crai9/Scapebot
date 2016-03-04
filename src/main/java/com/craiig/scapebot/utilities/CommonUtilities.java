@@ -1,7 +1,8 @@
 package com.craiig.scapebot.utilities;
 
 /**
- * Created by craig on 04/10/2015.
+ * Created by craig on 04/10/2015, 13:54.
+
  */
 
 import java.io.IOException;

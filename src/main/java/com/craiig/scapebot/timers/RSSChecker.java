@@ -19,7 +19,8 @@ import java.net.URL;
 import java.util.*;
 
 /**
- * Created by craig on 02/03/2016.
+ * Created by craig on 02/03/2016, 13:54.
+
  */
 public class RSSChecker {
 
@@ -65,6 +66,7 @@ public class RSSChecker {
 
                       if(FileUtilities.readTextFile("data/news.txt").size() <= 14){
                           //Not been written to before
+                          //TODO: Write these in reverse order
 
                           FileUtilities.writeToTextFile("data", "/news.txt", data);
                           System.out.println(data);
@@ -85,14 +87,19 @@ public class RSSChecker {
                           FileUtilities.writeToTextFile("data", "/news.txt", s);
                           String[] news = s.split("@@@");
 
-                          //TODO: Send to all chats that are accepting
-                          Chat chat = skype.getOrLoadChat("8:theoptimisticcow");
+                          ArrayList<String> chatIDs = FileUtilities.readTextFile("data/news-notifications.txt");
 
-                          chat.sendMessage(Message.create()
-                                  .with(Text.rich(news[0]).withBold())
-                                  .with(Text.NEW_LINE)
-                                  .with(Text.rich(news[3]).withItalic()));
-                          chat.sendMessage(news[1]);
+                          for(String id : chatIDs){
+
+                              Chat chat = skype.getOrLoadChat(id);
+
+                              chat.sendMessage(Message.create()
+                                      .with(Text.rich(news[0]).withBold())
+                                      .with(Text.NEW_LINE)
+                                      .with(Text.rich(news[3]).withItalic()));
+
+                              chat.sendMessage(news[1]);
+                          }
                       }
                   }
 
@@ -100,14 +107,13 @@ public class RSSChecker {
                   e.printStackTrace();
               }
 
-
           }
         };
 
         timer.scheduleAtFixedRate(timertask, 1000, 60000);
     }
 
-    public static String entryToString(SyndEntry entry){
+    private static String entryToString(SyndEntry entry){
      return entry.getTitle() + "@@@" + entry.getLink() + "@@@" + entry.getPublishedDate() + "@@@" + entry.getDescription().getValue().trim();
     }
 }

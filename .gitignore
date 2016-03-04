@@ -2,5 +2,4 @@
 *.jar
 *.iml
 .DS_Store
-login.txt
-news.txt
+data/*
