@@ -49,10 +49,9 @@ public class RSSChecker {
                   SyndFeedInput input = new SyndFeedInput();
                   SyndFeed feed = input.build(new XmlReader(httpcon));
                   List entries = feed.getEntries();
+                  Collections.reverse(entries);
 
                   Iterator itEntries = entries.iterator();
-
-                  FileUtilities.directoryExists("data");
 
                   ArrayList<String> existing;
                   ArrayList<String> fresh = new ArrayList<>();
@@ -62,11 +61,15 @@ public class RSSChecker {
 
                       SyndEntry entry = (SyndEntry) itEntries.next();
 
+                      //check if weird authenticated link
+                      if(entry.getLink().contains("/c=")){
+                          return;
+                      }
+
                       String data = entryToString(entry);
 
                       if(FileUtilities.readTextFile("data/news.txt").size() <= 14){
                           //Not been written to before
-                          //TODO: Write these in reverse order
 
                           FileUtilities.writeToTextFile("data", "/news.txt", data);
                           System.out.println(data);
@@ -99,6 +102,7 @@ public class RSSChecker {
                                       .with(Text.rich(news[3]).withItalic()));
 
                               chat.sendMessage(news[1]);
+
                           }
                       }
                   }
