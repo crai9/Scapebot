@@ -1,12 +1,16 @@
 package com.craiig.scapebot.listeners;
 
-import com.craiig.scapebot.commands.Commands;
+import com.craiig.scapebot.commands.Command;
+import com.craiig.scapebot.commands.Hey;
 import com.samczsun.skype4j.Skype;
 import com.samczsun.skype4j.chat.messages.ChatMessage;
 import com.samczsun.skype4j.events.EventHandler;
 import com.samczsun.skype4j.events.Listener;
 import com.samczsun.skype4j.events.chat.message.MessageEvent;
 import com.samczsun.skype4j.exceptions.ConnectionException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Craig on 01/03/2016, 21:05, 01:16.
@@ -16,11 +20,11 @@ import com.samczsun.skype4j.exceptions.ConnectionException;
 public class CommandListener implements Listener {
 
     private final Skype skype;
-    private final Commands commands;
+    private List<Command> commands = new ArrayList<>();
 
     public CommandListener(Skype skype){
         this.skype = skype;
-        this.commands = new Commands(this.skype);
+        commands.add(new Hey());
     }
 
     @EventHandler
@@ -32,30 +36,17 @@ public class CommandListener implements Listener {
 
                 String command = e.getMessage().getContent().asPlaintext().trim().substring(1).split(" ")[0].toLowerCase();
 
-                switchCommand(command, e.getMessage());
+                for(Command cmd : commands){
+                    if(command.equals(cmd.getName())){
+
+                        cmd.run(e.getMessage());
+
+                    }
+                }
             }
 
         } catch (ConnectionException ex) {
             System.out.println(ex.getMessage());
-        }
-
-    }
-
-    private void switchCommand(String command, ChatMessage message) throws ConnectionException{
-
-        switch (command){
-
-            case "hey":
-                commands.hey(message);
-                break;
-
-            case "shutdown":
-                commands.shutdown(message);
-                break;
-
-            default:
-                System.out.println("Not a recognised command");
-                break;
         }
 
     }

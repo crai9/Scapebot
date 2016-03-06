@@ -34,6 +34,7 @@ public class RSSChecker {
 
         Timer timer = new Timer("RSS Timer");
         TimerTask timertask;
+        Date date = new Date();
 
         timertask = new TimerTask() {
 
@@ -63,7 +64,7 @@ public class RSSChecker {
 
                       //check if weird authenticated link
                       if(entry.getLink().contains("/c=")){
-                          return;
+                          entry.setLink(entry.getLink().replaceAll("c=(.*)/", ""));
                       }
 
                       String data = entryToString(entry);

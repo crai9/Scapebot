@@ -1,6 +1,6 @@
 package com.craiig.scapebot.listeners;
 
-import com.craiig.scapebot.commands.Commands;
+import com.craiig.scapebot.commands.Command;
 import com.samczsun.skype4j.Skype;
 import com.samczsun.skype4j.events.EventHandler;
 import com.samczsun.skype4j.events.Listener;
@@ -15,11 +15,9 @@ import com.samczsun.skype4j.exceptions.ConnectionException;
 public class ChatListener implements Listener {
 
     private final Skype skype;
-    private final Commands commands;
 
     public ChatListener(Skype skype){
         this.skype = skype;
-        this.commands = new Commands(this.skype);
     }
 
     @EventHandler
@@ -41,8 +39,8 @@ public class ChatListener implements Listener {
 
             if(!e.getMessage().getContent().asPlaintext().startsWith("!") && !e.getMessage().getSender().getUsername().equals(skype.getUsername())){
 
-                if(e.getMessage().getContent().asPlaintext().contains("lols")){
-                    e.getChat().sendMessage("You sent a message containing -> 'lols'");
+                if(e.getMessage().getContent().asPlaintext().toLowerCase().contains("gz") || e.getMessage().getContent().asPlaintext().toLowerCase().contains("grats")){
+                    e.getChat().sendMessage("Congrats!");
                 }
 
             }
