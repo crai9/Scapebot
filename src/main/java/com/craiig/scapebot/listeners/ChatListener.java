@@ -39,7 +39,7 @@ public class ChatListener implements Listener {
 
             if(!e.getMessage().getContent().asPlaintext().startsWith("!") && !e.getMessage().getSender().getUsername().equals(skype.getUsername())){
 
-                if(e.getMessage().getContent().asPlaintext().toLowerCase().contains("gz") || e.getMessage().getContent().asPlaintext().toLowerCase().contains("grats")){
+                if(e.getMessage().getContent().asPlaintext().toLowerCase().contains("gz") && !e.getMessage().getContent().asPlaintext().toLowerCase().contains("http") || e.getMessage().getContent().asPlaintext().toLowerCase().contains("grats")){
                     e.getChat().sendMessage("Congrats!");
                 }
 

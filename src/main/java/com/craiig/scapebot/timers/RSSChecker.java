@@ -115,7 +115,7 @@ public class RSSChecker {
           }
         };
 
-        timer.scheduleAtFixedRate(timertask, 1000, 60000);
+        timer.scheduleAtFixedRate(timertask, 1000, 120000);
     }
 
     private static String entryToString(SyndEntry entry){
