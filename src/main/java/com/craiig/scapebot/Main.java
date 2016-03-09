@@ -43,7 +43,7 @@ class Main {
                 System.out.println("Failed to subscribe...");
             }
 
-            skype.setVisibility(Visibility.ONLINE);
+            skype.setVisibility(Visibility.AWAY);
 
             RSSChecker rss = new RSSChecker(skype);
             rss.start();

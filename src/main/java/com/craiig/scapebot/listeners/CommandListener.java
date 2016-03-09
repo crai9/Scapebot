@@ -3,6 +3,7 @@ package com.craiig.scapebot.listeners;
 import com.craiig.scapebot.commands.Activity;
 import com.craiig.scapebot.commands.Command;
 import com.craiig.scapebot.commands.Hey;
+import com.craiig.scapebot.commands.Kappa;
 import com.samczsun.skype4j.Skype;
 import com.samczsun.skype4j.chat.messages.ChatMessage;
 import com.samczsun.skype4j.events.EventHandler;
@@ -27,6 +28,7 @@ public class CommandListener implements Listener {
         this.skype = skype;
         commands.add(new Hey());
         commands.add(new Activity());
+        commands.add(new Kappa());
     }
 
     @EventHandler
