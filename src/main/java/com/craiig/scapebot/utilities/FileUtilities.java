@@ -55,6 +55,18 @@ public class FileUtilities {
             e.printStackTrace();
         }
     }
+    public static void emptyFile(String fileName)
+    {
+        File fileToEmpty = new File(fileName);
+        fileToEmpty.delete();
+
+        fileToEmpty.getParentFile().mkdir();
+        try {
+            fileToEmpty.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @SuppressWarnings("UnusedReturnValue")
     public static boolean directoryExists(String directory)

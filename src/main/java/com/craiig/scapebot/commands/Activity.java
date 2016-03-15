@@ -1,5 +1,6 @@
 package com.craiig.scapebot.commands;
 
+import com.craiig.scapebot.utilities.CommonUtilities;
 import com.samczsun.skype4j.chat.messages.ChatMessage;
 import com.samczsun.skype4j.exceptions.ChatNotFoundException;
 import com.samczsun.skype4j.exceptions.ConnectionException;
@@ -33,15 +34,23 @@ public class Activity extends Command {
 
     public void run(ChatMessage msg) throws ConnectionException {
 
+        //Parameter supplied as rsn
+        String rsn = msg.getContent().asPlaintext().replace("!activity ", "");
 
         if(msg.getContent().asPlaintext().length() < 11){
 
-            return;
+            //No parameter supplied as RSN
+            //Check if we already know RSN
+            rsn = CommonUtilities.getRSN(msg.getSender().getUsername());
+            if(rsn == null){
+                //No RSN stored
+                msg.getChat().sendMessage("No RSN supplied");
+                return;
+            }
+
         }
 
         try{
-
-            String rsn = msg.getContent().asPlaintext().replace("!activity ", "");
 
             String baseURL = "http://services.runescape.com/m=adventurers-log/rssfeed?searchName=";
 

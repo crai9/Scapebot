@@ -1,9 +1,6 @@
 package com.craiig.scapebot.listeners;
 
-import com.craiig.scapebot.commands.Activity;
-import com.craiig.scapebot.commands.Command;
-import com.craiig.scapebot.commands.Hey;
-import com.craiig.scapebot.commands.Kappa;
+import com.craiig.scapebot.commands.*;
 import com.samczsun.skype4j.Skype;
 import com.samczsun.skype4j.chat.messages.ChatMessage;
 import com.samczsun.skype4j.events.EventHandler;
@@ -26,9 +23,15 @@ public class CommandListener implements Listener {
 
     public CommandListener(Skype skype){
         this.skype = skype;
-        commands.add(new Hey());
         commands.add(new Activity());
         commands.add(new Kappa());
+        commands.add(new FeelsBadMan());
+        commands.add(new FeelsGoodMan());
+        commands.add(new VoiceOfSeren());
+        commands.add(new Warbands());
+        commands.add(new Shutdown());
+        commands.add(new PJSalt());
+        commands.add(new SetRSN());
     }
 
     @EventHandler
@@ -40,6 +43,19 @@ public class CommandListener implements Listener {
 
                 String command = e.getMessage().getContent().asPlaintext().trim().substring(1).split(" ")[0].toLowerCase();
 
+                //!commands
+                if(command.equals("commands")){
+                    String response = "Available commands are: ";
+                    for(Command cmd: commands){
+                        response += cmd.getName() + ", ";
+
+                    }
+                    response = response.substring(0, response.length()-2) + ".";
+                    e.getChat().sendMessage(response);
+                    return;
+                }
+
+                //All other commands
                 for(Command cmd : commands){
                     if(command.equals(cmd.getName())){
 

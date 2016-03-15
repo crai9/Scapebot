@@ -8,6 +8,9 @@ package com.craiig.scapebot.utilities;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 public class CommonUtilities {
 
@@ -37,4 +40,48 @@ public class CommonUtilities {
 
     }
 
+    public static String msToHMS(long millis){
+
+        String hms = "";
+        int h,m,s;
+
+        h = (int) TimeUnit.MILLISECONDS.toHours(millis);
+        m = (int) TimeUnit.MILLISECONDS.toMinutes(millis) -  (int) TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis));
+        s = (int) TimeUnit.MILLISECONDS.toSeconds(millis) - (int) TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis));
+
+        if(h > 0){
+            hms += h + "h ";
+        }
+        if(m > 0){
+            hms += m + "m ";
+        }
+        if(s > 0){
+            hms += s + "s";
+        }
+
+        return hms;
+
+    }
+
+    public static String getRSN(String username){
+
+        ArrayList<String> existing = FileUtilities.readTextFile("data/rsn.txt");
+        HashMap<String, String> pairs = new HashMap();
+
+        System.out.println(existing.size());
+        if(existing.size() < 1){
+            return null;
+        }
+
+        for(String pair : existing){
+
+            String[] split = pair.split(",");
+            pairs.put(split[0], split[1]);
+
+        }
+        if(pairs.containsKey(username)){
+            return pairs.get(username);
+        }
+        return null;
+    }
 }
