@@ -86,6 +86,14 @@ public class RSSChecker {
 
                   System.out.println("Number of new articles: " + fresh.size());
 
+                  //Lots of weird link, skip it
+                  if(fresh.size() > 5){
+                      for (String s : fresh){
+                          FileUtilities.writeToTextFile("data", "/news.txt", s);
+                      }
+                      return;
+                  }
+
                   if(fresh.size() > 0){
                       for(String s : fresh){
                           FileUtilities.writeToTextFile("data", "/news.txt", s);
