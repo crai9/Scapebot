@@ -5,6 +5,8 @@ import com.craiig.scapebot.utilities.CommonUtilities;
 import com.google.gson.Gson;
 import com.samczsun.skype4j.chat.messages.ChatMessage;
 import com.samczsun.skype4j.exceptions.ConnectionException;
+import com.samczsun.skype4j.formatting.Message;
+import com.samczsun.skype4j.formatting.Text;
 
 /**
  * Created by Craig on 12/03/2016, 21:17.
@@ -32,7 +34,10 @@ public class VoiceOfSeren extends Command {
         clan1 = v.getText().split(" ")[9];
         clan2 = v.getText().split(" ")[11];
 
-        msg.getChat().sendMessage("Current VoS: " + clan1 + " & " + clan2);
+        msg.getChat().sendMessage(Message.create()
+                .with(Text.rich("Current VoS: "))
+                .with(Text.rich(clan1 + " & " + clan2).withBold()));
+
     }
 
 }

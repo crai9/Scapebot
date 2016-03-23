@@ -32,6 +32,7 @@ public class CommandListener implements Listener {
         commands.add(new Shutdown());
         commands.add(new PJSalt());
         commands.add(new SetRSN());
+        commands.add(new Vorago());
     }
 
     @EventHandler
