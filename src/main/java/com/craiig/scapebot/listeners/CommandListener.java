@@ -33,6 +33,7 @@ public class CommandListener implements Listener {
         commands.add(new PJSalt());
         commands.add(new SetRSN());
         commands.add(new Vorago());
+        commands.add(new Araxxor());
     }
 
     @EventHandler
