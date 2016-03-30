@@ -40,7 +40,6 @@ public class RSSChecker {
 
           @Override
             public void run(){
-              System.out.println("Checking RSS Feed");
 
               try {
                   URL url = new URL("http://services.runescape.com/m=news/latest_news.rss");
@@ -84,9 +83,11 @@ public class RSSChecker {
 
                   fresh.removeAll(existing);
 
-                  System.out.println("Number of new articles: " + fresh.size());
+                  if(fresh.size() > 0){
+                      System.out.println("Number of new articles: " + fresh.size());
+                  }
 
-                  //Lots of weird link, skip it
+                  //Lots of weird links, skip it
                   if(fresh.size() > 5){
                       for (String s : fresh){
                           FileUtilities.writeToTextFile("data", "/news.txt", s);
