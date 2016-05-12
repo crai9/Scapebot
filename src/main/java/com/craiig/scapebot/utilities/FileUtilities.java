@@ -3,6 +3,7 @@ package com.craiig.scapebot.utilities;
 import java.io.*;
 import java.util.ArrayList;
 
+import static com.craiig.scapebot.utilities.CommonUtilities.log;
 /**
  * Created by Craig on 01/03/2016, 16:02.
 
@@ -41,7 +42,7 @@ public class FileUtilities {
     {
         if (!directoryExists(directory))
         {
-            System.out.println("Cannot write com file " + fileName + " in directory " + directory + "! The directory doesn't exist.");
+            log("Cannot write com file " + fileName + " in directory " + directory + "! The directory doesn't exist.");
             return;
         }
 

@@ -85,7 +85,7 @@ public class RSSChecker {
                           //Not been written to before
 
                           FileUtilities.writeToTextFile("data", "/news.txt", data);
-                          System.out.println(data);
+                          log(data);
                       }
 
                       fresh.add(data);
@@ -97,7 +97,7 @@ public class RSSChecker {
                   fresh.removeAll(existing);
 
                   if(fresh.size() > 0){
-                      System.out.println("Number of new articles: " + fresh.size());
+                      log("Number of new articles: " + fresh.size());
                   }
 
                   //Lots of weird links, skip it

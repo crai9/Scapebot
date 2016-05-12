@@ -43,9 +43,6 @@ public class Araxxor extends Command {
 
         String resets = (nextAraxRotation > 1) ? " resets" : " reset";
 
-        System.out.println("Today's rotation: " + rotations[currentAraxRotation]);
-        System.out.println("Next rotation: " + rotations[tomorrowAraxRotation] + " open after " + nextAraxRotation + resets);
-
         msg.getChat().sendMessage(Message.create()
             .with(Text.rich("Today's rotation: "))
             .with(Text.rich(rotations[currentAraxRotation]).withBold())

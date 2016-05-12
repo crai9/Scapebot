@@ -61,7 +61,7 @@ class Main {
                         try{
                             newSkype.subscribe();
                         }catch (IllegalStateException ex){
-                            System.out.println("Failed to subscribe...");
+                            log("Failed to subscribe...");
                         }
 
                         newSkype.setVisibility(Visibility.ONLINE);
@@ -78,7 +78,7 @@ class Main {
                                 oldSkype = null;
                                 System.gc();
                             } catch (Exception ex) {
-                                System.out.println("Error when logging out of previous instance");
+                                log("Error when logging out of previous instance");
                                 ex.printStackTrace();
                             }
                         }

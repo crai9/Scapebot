@@ -51,7 +51,7 @@ public class ChatListener implements Listener {
             }
 
         } catch (ConnectionException ex) {
-            System.out.println(ex.getMessage());
+            log(ex.getMessage());
         }
 
     }

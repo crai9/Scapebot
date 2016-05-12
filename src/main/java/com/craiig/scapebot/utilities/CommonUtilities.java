@@ -33,10 +33,10 @@ public class CommonUtilities {
 
         }
         catch (MalformedURLException e) {
-            System.out.println("Malformed URL: " + e.getMessage());
+            log("Malformed URL: " + e.getMessage());
         }
         catch (IOException e) {
-            System.out.println("I/O Error: " + e.getMessage());
+            log("I/O Error: " + e.getMessage());
         }
         return "Not available";
 
@@ -70,7 +70,7 @@ public class CommonUtilities {
         ArrayList<String> existing = FileUtilities.readTextFile("data/rsn.txt");
         HashMap<String, String> pairs = new HashMap();
 
-        System.out.println(existing.size());
+        log("Stored before: " + existing.size());
         if(existing.size() < 1){
             return null;
         }

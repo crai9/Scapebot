@@ -11,6 +11,7 @@ import com.samczsun.skype4j.exceptions.ConnectionException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.craiig.scapebot.utilities.CommonUtilities.log;
 /**
  * Created by Craig on 01/03/2016, 21:05, 01:16.
 
@@ -69,7 +70,7 @@ public class CommandListener implements Listener {
             }
 
         } catch (ConnectionException ex) {
-            System.out.println(ex.getMessage());
+            log(ex.getMessage());
         }
 
     }
