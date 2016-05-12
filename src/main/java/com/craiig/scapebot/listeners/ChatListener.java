@@ -7,6 +7,8 @@ import com.samczsun.skype4j.events.Listener;
 import com.samczsun.skype4j.events.chat.message.MessageEvent;
 import com.samczsun.skype4j.exceptions.ConnectionException;
 
+import java.util.Random;
+
 /**
  * Created by Craig on 01/03/2016, 21:05, 01:16.
 
@@ -40,7 +42,11 @@ public class ChatListener implements Listener {
             if(!e.getMessage().getContent().asPlaintext().startsWith("!") && !e.getMessage().getSender().getUsername().equals(skype.getUsername())){
 
                 if(e.getMessage().getContent().asPlaintext().toLowerCase().contains("gz") && !e.getMessage().getContent().asPlaintext().toLowerCase().contains("http") || e.getMessage().getContent().asPlaintext().toLowerCase().contains("grats")){
-                    e.getChat().sendMessage("Congrats!");
+
+                    String[] responses = {"Congrats!", "Gzz!", "Grats!!"};
+                    Random rand = new Random();
+
+                    e.getChat().sendMessage(responses[rand.nextInt((2) + 1)]);
                 }
 
             }

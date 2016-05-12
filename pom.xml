@@ -10,10 +10,15 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.github.samczsun</groupId>
+            <artifactId>Skype4J</artifactId>
+            <version>master-v0.1.5-gbfaff2f-27</version>
+        </dependency>
+<!--        <dependency>
             <groupId>com.samczsun</groupId>
             <artifactId>skype4j</artifactId>
             <version>0.1.5</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
@@ -34,8 +39,18 @@
             <artifactId>rome</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>3.2.2</version>
+        </dependency>
 
 
     </dependencies>
-
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
 </project>

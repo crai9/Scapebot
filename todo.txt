@@ -1,0 +1,9 @@
+TODO: Count command usage in db
+TODO: Currency
+TODO: Take away from currency when command used
+TODO: Refactor to not use filesystem so much
+TODO: Price command
+TODO: Store historical Adv Log
+TODO: Custom commands
+TODO: Better chat listener
+TODO: Try fix random log out

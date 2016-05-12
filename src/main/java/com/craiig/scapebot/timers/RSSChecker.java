@@ -1,5 +1,6 @@
 package com.craiig.scapebot.timers;
 
+import static com.craiig.scapebot.utilities.CommonUtilities.log;
 import com.craiig.scapebot.utilities.FileUtilities;
 import com.samczsun.skype4j.Skype;
 import com.samczsun.skype4j.chat.Chat;
@@ -38,8 +39,20 @@ public class RSSChecker {
 
         timertask = new TimerTask() {
 
+          private int count = 0;
+
           @Override
             public void run(){
+
+              count++;
+              log("counter at: " + count);
+              if(count > 10){
+                  log("Cancelling old timer");
+                  timer.cancel();
+                  timer.purge();
+                  System.gc();
+                  return;
+              }
 
               try {
                   URL url = new URL("http://services.runescape.com/m=news/latest_news.rss");
@@ -124,7 +137,7 @@ public class RSSChecker {
           }
         };
 
-        timer.scheduleAtFixedRate(timertask, 1000, 120000);
+        timer.scheduleAtFixedRate(timertask, 1000, 180000);
     }
 
     private static String entryToString(SyndEntry entry){

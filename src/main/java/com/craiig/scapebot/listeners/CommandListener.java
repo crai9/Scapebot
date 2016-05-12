@@ -34,7 +34,6 @@ public class CommandListener implements Listener {
         commands.add(new SetRSN());
         commands.add(new Vorago());
         commands.add(new Araxxor());
-        commands.add(new GregLogic());
         commands.add(new RiseOfTheSix());
     }
 

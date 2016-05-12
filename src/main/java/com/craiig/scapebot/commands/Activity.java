@@ -18,10 +18,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.MalformedInputException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.text.NumberFormat;
+import java.util.*;
 
 /**
  * Created by Craig on 07/03/2016, 20:20.
@@ -67,25 +65,37 @@ public class Activity extends Command {
 
                 Iterator itEntries = entries.iterator();
 
-                String message = new String();
+                String message = "";
 
                 while (itEntries.hasNext()) {
 
                     SyndEntry entry = (SyndEntry) itEntries.next();
-                    message += entry.getTitle() + System.lineSeparator();
+                    message += parseXP(entry.getTitle()) + System.lineSeparator();
 
                 }
 
-                msg.getChat().sendMessage(message);
+                msg.getChat().sendMessage(Message.fromHtml(message));
 
             }catch (FileNotFoundException ex){
                 msg.getChat().sendMessage("Activities for that user could not be found.");
-                return;
             }
 
         }catch (FeedException | IOException  ex){
             ex.printStackTrace();
         }
 
+    }
+
+    public static String parseXP(String line){
+
+        String[] sections = line.split("XP");
+        try {
+
+            String formatted = NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(sections[0]));
+            return formatted + "XP" + sections[1];
+
+        } catch (NumberFormatException e) {
+            return line;
+        }
     }
 }

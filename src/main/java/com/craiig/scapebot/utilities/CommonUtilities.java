@@ -8,7 +8,9 @@ package com.craiig.scapebot.utilities;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -83,5 +85,11 @@ public class CommonUtilities {
             return pairs.get(username);
         }
         return null;
+    }
+
+    public static void log(String msg){
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
+        Date date = new Date();
+        System.out.println(sdf.format(date) + ": " + msg);
     }
 }
