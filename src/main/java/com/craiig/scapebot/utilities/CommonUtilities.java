@@ -5,13 +5,17 @@ package com.craiig.scapebot.utilities;
 
  */
 
+import com.samczsun.skype4j.chat.messages.ChatMessage;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class CommonUtilities {
@@ -65,12 +69,15 @@ public class CommonUtilities {
 
     }
 
-    public static String getRSN(String username){
+    public static String getRSN(String username, ChatMessage message, String commandName){
+
+        if(message.getContent().asPlaintext().length() > commandName.length() + 2){
+            return message.getContent().asPlaintext().replace("!" + commandName + " ", "");
+        }
 
         ArrayList<String> existing = FileUtilities.readTextFile("data/rsn.txt");
         HashMap<String, String> pairs = new HashMap();
 
-        log("Stored before: " + existing.size());
         if(existing.size() < 1){
             return null;
         }
@@ -84,6 +91,7 @@ public class CommonUtilities {
         if(pairs.containsKey(username)){
             return pairs.get(username);
         }
+
         return null;
     }
 
@@ -91,5 +99,18 @@ public class CommonUtilities {
         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
         Date date = new Date();
         System.out.println(sdf.format(date) + ": " + msg);
+    }
+
+    public static String parseXP(String line){
+
+        String[] sections = line.split("XP");
+        try {
+
+            String formatted = NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(sections[0]));
+            return formatted + "XP" + sections[1];
+
+        } catch (NumberFormatException e) {
+            return line;
+        }
     }
 }

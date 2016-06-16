@@ -6,6 +6,7 @@ import com.samczsun.skype4j.exceptions.ConnectionException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,7 +20,7 @@ public class SetRSN extends Command {
     }
 
     @Override
-    public void run(ChatMessage msg) throws ConnectionException {
+    public void run(ChatMessage msg, List<Command> commands) throws ConnectionException {
 
         String rsn = msg.getContent().asPlaintext().replace("!setrsn", "").trim();
 

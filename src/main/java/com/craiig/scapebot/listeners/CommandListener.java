@@ -23,7 +23,10 @@ public class CommandListener implements Listener {
     private List<Command> commands = new ArrayList<>();
 
     public CommandListener(Skype skype){
+
         this.skype = skype;
+
+        commands.add(new Commands());
         commands.add(new Activity());
         commands.add(new Kappa());
         commands.add(new FeelsBadMan());
@@ -36,6 +39,11 @@ public class CommandListener implements Listener {
         commands.add(new Vorago());
         commands.add(new Araxxor());
         commands.add(new RiseOfTheSix());
+        commands.add(new ActivityPlus());
+        commands.add(new Chats());
+        commands.add(new Clan());
+        commands.add(new Title());
+
     }
 
     @EventHandler
@@ -47,23 +55,10 @@ public class CommandListener implements Listener {
 
                 String command = e.getMessage().getContent().asPlaintext().trim().substring(1).split(" ")[0].toLowerCase();
 
-                //!commands
-                if(command.equals("commands")){
-                    String response = "Available commands are: ";
-                    for(Command cmd: commands){
-                        response += cmd.getName() + ", ";
-
-                    }
-                    response = response.substring(0, response.length()-2) + ".";
-                    e.getChat().sendMessage(response);
-                    return;
-                }
-
-                //All other commands
                 for(Command cmd : commands){
                     if(command.equals(cmd.getName())){
 
-                        cmd.run(e.getMessage());
+                        cmd.run(e.getMessage(), commands);
 
                     }
                 }

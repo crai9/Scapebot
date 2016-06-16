@@ -20,7 +20,7 @@ public class RiseOfTheSix extends Command {
         return "rots";
     }
 
-    public void run(ChatMessage msg) throws ConnectionException {
+    public void run(ChatMessage msg, List<Command> commands) throws ConnectionException {
 
         List<String[]> rots = new ArrayList<>();
         rots.add(0, new String[6]);

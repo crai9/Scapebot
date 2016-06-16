@@ -8,6 +8,8 @@ import com.samczsun.skype4j.exceptions.ConnectionException;
 import com.samczsun.skype4j.formatting.Message;
 import com.samczsun.skype4j.formatting.Text;
 
+import java.util.List;
+
 /**
  * Created by Craig on 12/03/2016, 21:17.
  */
@@ -18,7 +20,7 @@ public class VoiceOfSeren extends Command {
         return "vos";
     }
 
-    public void run(ChatMessage msg) throws ConnectionException {
+    public void run(ChatMessage msg, List<Command> commands) throws ConnectionException {
 
         String activeVos = "";
         String clan1 = "";

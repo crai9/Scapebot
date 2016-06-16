@@ -2,10 +2,8 @@ package com.craiig.scapebot.commands;
 
 import com.craiig.scapebot.utilities.CommonUtilities;
 import com.samczsun.skype4j.chat.messages.ChatMessage;
-import com.samczsun.skype4j.exceptions.ChatNotFoundException;
 import com.samczsun.skype4j.exceptions.ConnectionException;
 import com.samczsun.skype4j.formatting.Message;
-import com.samczsun.skype4j.formatting.Text;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.FeedException;
@@ -16,14 +14,16 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.*;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 import static com.craiig.scapebot.utilities.CommonUtilities.parseXP;
 
-public class Activity extends Command {
+public class ActivityPlus extends Command {
 
     public String getName(){
-        return "activity";
+        return "activity+";
     }
 
     public void run(ChatMessage msg, List<Command> commands) throws ConnectionException {
@@ -58,7 +58,8 @@ public class Activity extends Command {
                 while (itEntries.hasNext()) {
 
                     SyndEntry entry = (SyndEntry) itEntries.next();
-                    message += parseXP(entry.getTitle()) + System.lineSeparator();
+                    message += "<b>" + parseXP(entry.getTitle()) + "</b>";
+                    message += parseXP(entry.getDescription().getValue()) + System.lineSeparator();
 
                 }
 

@@ -2,6 +2,9 @@ package com.craiig.scapebot.commands;
 
 import com.samczsun.skype4j.chat.messages.ChatMessage;
 import com.samczsun.skype4j.exceptions.ConnectionException;
+
+import java.util.List;
+
 import static com.craiig.scapebot.utilities.CommonUtilities.log;
 
 /**
@@ -13,7 +16,7 @@ public class Shutdown extends Command {
         return "shutdown";
     }
 
-    public void run(ChatMessage msg) throws ConnectionException {
+    public void run(ChatMessage msg, List<Command> commands) throws ConnectionException {
 
         if(msg.getSender().getUsername().equals("theoptimisticcow")){
             msg.getChat().sendMessage("Shutting down");

@@ -5,6 +5,7 @@ import com.samczsun.skype4j.exceptions.ConnectionException;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Craig on 09/03/2016, 01:50.
@@ -15,7 +16,7 @@ public class Kappa extends Command {
         return "kappa";
     }
 
-    public void run(ChatMessage msg) throws ConnectionException {
+    public void run(ChatMessage msg, List<Command> commands) throws ConnectionException {
 
         File kappa = new File("img/kappa.png");
 

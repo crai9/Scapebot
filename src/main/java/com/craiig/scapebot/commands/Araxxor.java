@@ -9,6 +9,7 @@ import org.joda.time.DateTimeZone;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.List;
 
 
 /**
@@ -21,7 +22,7 @@ public class Araxxor extends Command {
         return "araxxor";
     }
 
-    public void run(ChatMessage msg) throws ConnectionException {
+    public void run(ChatMessage msg, List<Command> commands) throws ConnectionException {
 
         String[] rotations = {"1 & 2", "2 & 3", "1 & 3"};
 

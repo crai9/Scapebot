@@ -11,6 +11,7 @@ import org.joda.time.format.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.List;
 
 
 /**
@@ -22,7 +23,7 @@ public class Vorago extends Command {
         return "vorago";
     }
 
-    public void run(ChatMessage msg) throws ConnectionException {
+    public void run(ChatMessage msg, List<Command> commands) throws ConnectionException {
 
         String[] rotations = {"Ceilings", "Scopulus", "Vitalis", "Green Bomb", "TeamSplit", "Purple Bomb"};
 
