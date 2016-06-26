@@ -45,12 +45,12 @@ public class RSSChecker {
             public void run(){
 
               count++;
-              log("counter at: " + count);
               if(count > 10){
-                  log("Cancelling old timer");
+
                   timer.cancel();
                   timer.purge();
                   System.gc();
+
                   return;
               }
 

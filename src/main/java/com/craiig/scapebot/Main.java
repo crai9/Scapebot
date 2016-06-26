@@ -3,6 +3,7 @@ package com.craiig.scapebot;
 import static com.craiig.scapebot.utilities.CommonUtilities.log;
 import com.craiig.scapebot.listeners.ChatListener;
 import com.craiig.scapebot.listeners.CommandListener;
+import com.craiig.scapebot.listeners.ContactRequestListener;
 import com.craiig.scapebot.timers.RSSChecker;
 import com.samczsun.skype4j.Skype;
 import com.samczsun.skype4j.SkypeBuilder;
@@ -57,6 +58,7 @@ class Main {
 
                         newSkype.getEventDispatcher().registerListener(new ChatListener(newSkype));
                         newSkype.getEventDispatcher().registerListener(new CommandListener(newSkype));
+                        newSkype.getEventDispatcher().registerListener(new ContactRequestListener(newSkype));
 
                         try{
                             newSkype.subscribe();

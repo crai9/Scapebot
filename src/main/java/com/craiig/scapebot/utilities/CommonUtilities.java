@@ -72,7 +72,7 @@ public class CommonUtilities {
     public static String getRSN(String username, ChatMessage message, String commandName){
 
         if(message.getContent().asPlaintext().length() > commandName.length() + 2){
-            return message.getContent().asPlaintext().replace("!" + commandName + " ", "");
+            return message.getContent().asPlaintext().toLowerCase().replace("!" + commandName + " ", "");
         }
 
         ArrayList<String> existing = FileUtilities.readTextFile("data/rsn.txt");

@@ -23,7 +23,7 @@ public class Shutdown extends Command {
             log("Logging out");
             msg.getClient().logout();
         } else {
-            msg.getChat().sendMessage("Only Craig can use this command.");
+            msg.getChat().sendMessage("Admin only command.");
         }
 
     }

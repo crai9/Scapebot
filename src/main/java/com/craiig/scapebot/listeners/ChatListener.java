@@ -17,6 +17,8 @@ import static com.craiig.scapebot.utilities.CommonUtilities.log;
 
 public class ChatListener implements Listener {
 
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_RESET = "\u001B[0m";
     private final Skype skype;
 
     public ChatListener(Skype skype){
@@ -36,13 +38,13 @@ public class ChatListener implements Listener {
             //how to deal with responses being updated dynamically?
             //how to add new words and reload list?
 
-            log(" '" + e.getMessage().getContent() + "' sent by " + e.getMessage().getSender().getDisplayName() + " in (" + e.getMessage().getSender().getChat().getIdentity() + ")");
+            log(ANSI_GREEN + "'" + e.getMessage().getContent() + "'" + ANSI_RESET + " sent by " + e.getMessage().getSender().getDisplayName() + " in (" + e.getMessage().getSender().getChat().getIdentity() + ")");
 
             if(!e.getMessage().getContent().asPlaintext().startsWith("!") && !e.getMessage().getSender().getUsername().equals(skype.getUsername())){
 
                 if(e.getMessage().getContent().asPlaintext().toLowerCase().contains("gz") && !e.getMessage().getContent().asPlaintext().toLowerCase().contains("http") || e.getMessage().getContent().asPlaintext().toLowerCase().contains("grats")){
 
-                    String[] responses = {"Congrats!", "Gzz!", "Grats!!"};
+                    String[] responses = {"Congrats! (rock)", "Gzz! (clap)", "Grats!! (party)"};
                     Random rand = new Random();
 
                     e.getChat().sendMessage(responses[rand.nextInt((2) + 1)]);

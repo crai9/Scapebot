@@ -6,6 +6,8 @@ import com.samczsun.skype4j.chat.messages.ChatMessage;
 import com.samczsun.skype4j.events.EventHandler;
 import com.samczsun.skype4j.events.Listener;
 import com.samczsun.skype4j.events.chat.message.MessageEvent;
+import com.samczsun.skype4j.events.contact.ContactRequestEvent;
+import com.samczsun.skype4j.exceptions.ChatNotFoundException;
 import com.samczsun.skype4j.exceptions.ConnectionException;
 
 import java.util.ArrayList;
@@ -40,7 +42,6 @@ public class CommandListener implements Listener {
         commands.add(new Araxxor());
         commands.add(new RiseOfTheSix());
         commands.add(new ActivityPlus());
-        commands.add(new Chats());
         commands.add(new Clan());
         commands.add(new Title());
 
@@ -63,10 +64,12 @@ public class CommandListener implements Listener {
                     }
                 }
             }
+            skype.loadAllContacts();
 
         } catch (ConnectionException ex) {
             log(ex.getMessage());
         }
+
 
     }
 
