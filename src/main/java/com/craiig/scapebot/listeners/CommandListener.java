@@ -59,7 +59,9 @@ public class CommandListener implements Listener {
                 for(Command cmd : commands){
                     if(command.equals(cmd.getName())){
 
+                        e.getChat().startTyping();
                         cmd.run(e.getMessage(), commands);
+                        e.getChat().stopTyping();
 
                     }
                 }
