@@ -101,7 +101,7 @@ public class RSSChecker {
                   }
 
                   //Lots of weird links, skip it
-                  if(fresh.size() > 5){
+                  if(fresh.size() > 1){
                       for (String s : fresh){
                           FileUtilities.writeToTextFile("data", "/news.txt", s);
                       }
