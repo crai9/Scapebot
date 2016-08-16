@@ -25,15 +25,13 @@ public class CommandListener implements Listener {
 
         this.skype = skype;
 
+        //TODO: Probably order these by most used, should speed things up
+
         commands.add(new Commands());
         commands.add(new Activity());
-        //commands.add(new Kappa());
-        //commands.add(new FeelsBadMan());
-        //commands.add(new FeelsGoodMan());
         commands.add(new VoiceOfSeren());
         commands.add(new Warbands());
         commands.add(new Shutdown());
-        //commands.add(new PJSalt());
         commands.add(new SetRSN());
         commands.add(new Vorago());
         commands.add(new Araxxor());
