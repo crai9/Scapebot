@@ -14,6 +14,8 @@ public abstract class Command {
 
     public abstract String getName();
 
-    public abstract void run(ChatMessage msg, List<Command> commands) throws ConnectionException;
+    public abstract String[] getAliases();
+
+    public abstract void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException;
 
 }

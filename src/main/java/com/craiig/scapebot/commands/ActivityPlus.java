@@ -26,9 +26,13 @@ public class ActivityPlus extends Command {
         return "activity+";
     }
 
-    public void run(ChatMessage msg, List<Command> commands) throws ConnectionException {
+    public String[] getAliases(){
+        return new String[] {};
+    }
 
-        String rsn = CommonUtilities.getRSN(msg.getSender().getUsername(), msg, getName());
+    public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
+
+        String rsn = CommonUtilities.getRSN(msg.getSender().getUsername(), msg, trigger);
 
         if(rsn == null){
             //No RSN stored

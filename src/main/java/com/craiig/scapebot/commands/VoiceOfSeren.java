@@ -20,7 +20,11 @@ public class VoiceOfSeren extends Command {
         return "vos";
     }
 
-    public void run(ChatMessage msg, List<Command> commands) throws ConnectionException {
+    public String[] getAliases(){
+        return new String[] {"voiceofseren"};
+    }
+
+    public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
 
         String activeVos = "";
         String clan1 = "";

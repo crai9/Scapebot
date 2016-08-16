@@ -16,7 +16,11 @@ public class Commands extends Command {
         return "commands";
     }
 
-    public void run(ChatMessage msg, List<Command> commands) throws ConnectionException {
+    public String[] getAliases(){
+        return new String[] {};
+    }
+
+    public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
 
 
             String response = "Available commands are: ";

@@ -19,8 +19,12 @@ public class SetRSN extends Command {
         return "setrsn";
     }
 
+    public String[] getAliases(){
+        return new String[] {};
+    }
+
     @Override
-    public void run(ChatMessage msg, List<Command> commands) throws ConnectionException {
+    public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
 
         String rsn = msg.getContent().asPlaintext().replace("!setrsn", "").trim();
 

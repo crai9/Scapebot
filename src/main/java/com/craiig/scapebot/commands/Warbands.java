@@ -16,7 +16,11 @@ public class Warbands extends Command{
         return "wbs";
     }
 
-    public void run(ChatMessage msg, List<Command> commands) throws ConnectionException {
+    public String[] getAliases(){
+        return new String[] {"warbands", "bands"};
+    }
+
+    public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
 
         long millis = (25200 - ((new Date().getTime() / 1000 - 1376222417) % 25200)) * 1000;
         msg.getChat().sendMessage(CommonUtilities.msToHMS(millis) + " until the next Warband.");

@@ -26,9 +26,13 @@ public class Activity extends Command {
         return "activity";
     }
 
-    public void run(ChatMessage msg, List<Command> commands) throws ConnectionException {
+    public String[] getAliases(){
+        return new String[] {"bork-log", "fury-log", "borklog", "furylog", "bork", "borkcounter", "bork-counter"};
+    }
 
-        String rsn = CommonUtilities.getRSN(msg.getSender().getUsername(), msg, getName());
+    public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
+
+        String rsn = CommonUtilities.getRSN(msg.getSender().getUsername(), msg, trigger);
 
         if(rsn == null){
             //No RSN stored
@@ -65,7 +69,7 @@ public class Activity extends Command {
                 msg.getChat().sendMessage(Message.fromHtml(message));
 
             }catch (FileNotFoundException ex){
-                msg.getChat().sendMessage("Activities for that user could not be found.");
+                msg.getChat().sendMessage("Activities for '" + rsn + "' could not be found.");
             }
 
         }catch (FeedException | IOException  ex){

@@ -23,7 +23,11 @@ public class Vorago extends Command {
         return "vorago";
     }
 
-    public void run(ChatMessage msg, List<Command> commands) throws ConnectionException {
+    public String[] getAliases(){
+        return new String[] {"rago"};
+    }
+
+    public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
 
         String[] rotations = {"Ceilings", "Scopulus", "Vitalis", "Green Bomb", "TeamSplit", "Purple Bomb"};
 

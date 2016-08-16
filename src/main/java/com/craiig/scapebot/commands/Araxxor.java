@@ -22,7 +22,11 @@ public class Araxxor extends Command {
         return "araxxor";
     }
 
-    public void run(ChatMessage msg, List<Command> commands) throws ConnectionException {
+    public String[] getAliases(){
+        return new String[] {"raxx", "rax", "spider", "arax"};
+    }
+
+    public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
 
         String[] rotations = {"1 & 2", "2 & 3", "1 & 3"};
 

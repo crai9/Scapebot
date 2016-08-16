@@ -20,7 +20,11 @@ public class RiseOfTheSix extends Command {
         return "rots";
     }
 
-    public void run(ChatMessage msg, List<Command> commands) throws ConnectionException {
+    public String[] getAliases(){
+        return new String[] {"rot6", "riseofthesix"};
+    }
+
+    public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
 
         List<String[]> rots = new ArrayList<>();
         rots.add(0, new String[6]);

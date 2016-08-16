@@ -16,7 +16,11 @@ public class Shutdown extends Command {
         return "shutdown";
     }
 
-    public void run(ChatMessage msg, List<Command> commands) throws ConnectionException {
+    public String[] getAliases(){
+        return new String[] {};
+    }
+
+    public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
 
         if(msg.getSender().getUsername().equals("theoptimisticcow")){
             msg.getChat().sendMessage("Shutting down");
