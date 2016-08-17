@@ -17,7 +17,7 @@ public class Commands extends Command {
     }
 
     public String[] getAliases(){
-        return new String[] {};
+        return new String[] {"help", "command", "info"};
     }
 
     public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {

@@ -40,6 +40,7 @@ public class CommandListener implements Listener {
         commands.add(new Clan());
         commands.add(new Title());
         commands.add(new Emotes());
+        commands.add(new Wiki());
 
     }
 
