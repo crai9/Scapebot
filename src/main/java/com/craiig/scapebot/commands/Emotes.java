@@ -18,7 +18,7 @@ public class Emotes extends Command {
     }
 
     public String[] getAliases(){
-        return new String[] {"Kappa", "PJSalt", "FeelsGoodMan", "FeelsBadMan", "PogChamp"};
+        return new String[] {"Kappa", "PJSalt", "FeelsGoodMan", "FeelsBadMan", "PogChamp", "TriHard"};
     }
 
     public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
@@ -42,6 +42,7 @@ public class Emotes extends Command {
         pairs.put("feelsgoodman", "img/feelsgoodman.png");
         pairs.put("feelsbadman", "img/feelsbadman.png");
         pairs.put("pogchamp", "img/pogchamp.jpg");
+        pairs.put("trihard", "img/trihard.jpg");
 
         if(pairs.containsKey(trigger)){
 

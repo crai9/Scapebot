@@ -39,8 +39,18 @@ public class Clan extends Command {
         Gson gson = new Gson();
         PlayerDetails details = gson.fromJson(text, PlayerDetails.class);
 
-        String end = (details.getRecruiting() == "true") ? "are recruiting!" : "are not recruiting.";
-        String message = "Clan is <b>" + details.getClan() + "</b> and they " + end;
+        String message;
+
+        if(details.getClan() == null){
+
+            message = details.getName() + " is not in a clan.";
+
+        } else {
+
+            String end = (details.getRecruiting() == "true") ? "are recruiting!" : "are not recruiting.";
+
+            message = "Clan is <b>" + details.getClan() + "</b> and they " + end;
+        }
 
         msg.getChat().sendMessage(Message.fromHtml(message));
 

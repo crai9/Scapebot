@@ -40,7 +40,9 @@ public class Title extends Command {
         String title = "<b>" + details.getTitle() + "</b>";
         String message;
 
-        if(details.getIsSuffix().equals("true")){
+        if(details.getTitle().length() == 0){
+            message = details.getName();
+        } else if(details.getIsSuffix().equals("true")){
             message = details.getName() + " " + title;
         } else {
             message = title + " " + details.getName();

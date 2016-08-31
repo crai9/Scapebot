@@ -69,10 +69,10 @@ public class CommonUtilities {
 
     }
 
-    public static String getRSN(String username, ChatMessage message, String commandName){
+    public static String getRSN(String username, ChatMessage message, String trigger){
 
-        if(message.getContent().asPlaintext().length() > commandName.length() + 2){
-            return message.getContent().asPlaintext().toLowerCase().replace("!" + commandName + " ", "");
+        if(message.getContent().asPlaintext().length() > trigger.length() + 2){
+            return message.getContent().asPlaintext().replace("!" + trigger + " ", "");
         }
 
         ArrayList<String> existing = FileUtilities.readTextFile("data/rsn.txt");
