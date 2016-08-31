@@ -6,6 +6,8 @@ package com.craiig.scapebot.utilities;
  */
 
 import com.samczsun.skype4j.chat.messages.ChatMessage;
+import com.samczsun.skype4j.participants.Participant;
+import com.samczsun.skype4j.participants.User;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -113,4 +115,9 @@ public class CommonUtilities {
             return line;
         }
     }
+
+    public static User participantToUser(Participant participant){
+        return (User) participant;
+    }
+
 }

@@ -19,6 +19,7 @@ import java.net.URL;
 import java.util.*;
 
 import static com.craiig.scapebot.utilities.CommonUtilities.parseXP;
+import static com.craiig.scapebot.utilities.CommonUtilities.participantToUser;
 
 public class Activity extends Command {
 
@@ -32,7 +33,7 @@ public class Activity extends Command {
 
     public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
 
-        String rsn = CommonUtilities.getRSN(msg.getSender().getUsername(), msg, trigger);
+        String rsn = CommonUtilities.getRSN(participantToUser(msg.getSender()).getUsername(), msg, trigger);
 
         if(rsn == null){
             //No RSN stored

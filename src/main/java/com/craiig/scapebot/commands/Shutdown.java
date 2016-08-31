@@ -2,14 +2,14 @@ package com.craiig.scapebot.commands;
 
 import com.samczsun.skype4j.chat.messages.ChatMessage;
 import com.samczsun.skype4j.exceptions.ConnectionException;
+import com.samczsun.skype4j.participants.User;
 
 import java.util.List;
 
 import static com.craiig.scapebot.utilities.CommonUtilities.log;
+import static com.craiig.scapebot.utilities.CommonUtilities.participantToUser;
 
-/**
- * Created by Craig on 14/03/2016, 00:42.
- */
+
 public class Shutdown extends Command {
 
     public String getName() {
@@ -17,12 +17,12 @@ public class Shutdown extends Command {
     }
 
     public String[] getAliases(){
-        return new String[] {};
+        return new String[] {"quit", "exit"};
     }
 
     public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
 
-        if(msg.getSender().getUsername().equals("theoptimisticcow")){
+        if(participantToUser(msg.getSender()).getUsername().equals("theoptimisticcow")){
             msg.getChat().sendMessage("Shutting down");
             log("Logging out");
             msg.getClient().logout();

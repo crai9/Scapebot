@@ -11,14 +11,9 @@
     <dependencies>
         <dependency>
             <groupId>com.github.samczsun</groupId>
-            <artifactId>Skype4J</artifactId>
-            <version>master-v0.1.5-gbfaff2f-27</version>
-        </dependency>
-<!--        <dependency>
-            <groupId>com.samczsun</groupId>
             <artifactId>skype4j</artifactId>
-            <version>0.1.5</version>
-        </dependency>-->
+            <version>master-v0.1.5-gc47d7b8-40</version>
+        </dependency>
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>

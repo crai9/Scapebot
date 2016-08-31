@@ -11,6 +11,8 @@ import com.samczsun.skype4j.formatting.Message;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.craiig.scapebot.utilities.CommonUtilities.participantToUser;
+
 public class Clan extends Command {
 
     public String getName(){
@@ -23,7 +25,7 @@ public class Clan extends Command {
 
     public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
 
-        String rsn = CommonUtilities.getRSN(msg.getSender().getUsername(), msg, trigger);
+        String rsn = CommonUtilities.getRSN(participantToUser(msg.getSender()).getUsername(), msg, trigger);
 
         if(rsn == null){
             //No RSN stored

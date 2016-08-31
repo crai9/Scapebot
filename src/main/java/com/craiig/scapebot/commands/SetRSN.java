@@ -9,9 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Craig on 15/03/2016, 01:18.
- */
+import static com.craiig.scapebot.utilities.CommonUtilities.participantToUser;
+
+
 public class SetRSN extends Command {
 
     @Override
@@ -43,8 +43,8 @@ public class SetRSN extends Command {
 
         }
 
-        pairs.remove(msg.getSender().getUsername());
-        pairs.put(msg.getSender().getUsername(), rsn);
+        pairs.remove(participantToUser(msg.getSender()).getUsername());
+        pairs.put(participantToUser(msg.getSender()).getUsername(), rsn);
 
         FileUtilities.emptyFile("data/rsn.txt");
 
@@ -52,6 +52,6 @@ public class SetRSN extends Command {
             FileUtilities.writeToTextFile("data/", "rsn.txt", entry.getKey() + "," + entry.getValue());
         }
 
-        msg.getChat().sendMessage(msg.getSender().getUsername() + " is now known as: " + rsn);
+        msg.getChat().sendMessage(participantToUser(msg.getSender()).getUsername() + " is now known as: " + rsn);
     }
 }

@@ -8,9 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Created by Craig on 09/03/2016, 01:50.
- */
+
 public class Emotes extends Command {
 
     public String getName(){

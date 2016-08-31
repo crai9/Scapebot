@@ -9,6 +9,7 @@ import com.samczsun.skype4j.exceptions.ConnectionException;
 import java.util.Random;
 
 import static com.craiig.scapebot.utilities.CommonUtilities.log;
+import static com.craiig.scapebot.utilities.CommonUtilities.participantToUser;
 
 /**
  * Created by Craig on 01/03/2016, 21:05, 01:16.
@@ -38,9 +39,9 @@ public class ChatListener implements Listener {
             //how to deal with responses being updated dynamically?
             //how to add new words and reload list?
 
-            log(ANSI_GREEN + "'" + e.getMessage().getContent() + "'" + ANSI_RESET + " sent by " + e.getMessage().getSender().getDisplayName() + " in (" + e.getMessage().getSender().getChat().getIdentity() + ")");
+            log(ANSI_GREEN + "'" + e.getMessage().getContent() + "'" + ANSI_RESET + " sent by " + participantToUser(e.getMessage().getSender()).getUsername() + " in (" + e.getMessage().getSender().getChat().getIdentity() + ")");
 
-            if(!e.getMessage().getContent().asPlaintext().startsWith("!") && !e.getMessage().getSender().getUsername().equals(skype.getUsername())){
+            if(!e.getMessage().getContent().asPlaintext().startsWith("!") && !participantToUser(e.getMessage().getSender()).getUsername().equals(skype.getUsername())){
 
                 if(e.getMessage().getContent().asPlaintext().toLowerCase().contains("gz") && !e.getMessage().getContent().asPlaintext().toLowerCase().contains("http") || e.getMessage().getContent().asPlaintext().toLowerCase().contains("grats")){
 
