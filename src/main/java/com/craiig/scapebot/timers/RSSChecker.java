@@ -55,6 +55,7 @@ public class RSSChecker {
               }
 
               try {
+
                   URL url = new URL("http://services.runescape.com/m=news/latest_news.rss");
 
                   HttpURLConnection httpcon = (HttpURLConnection)url.openConnection();
@@ -113,20 +114,26 @@ public class RSSChecker {
                           FileUtilities.writeToTextFile("data", "/news.txt", s);
                           String[] news = s.split("@@@");
 
-                          ArrayList<String> chatIDs = FileUtilities.readTextFile("data/news-notifications.txt");
+                          ArrayList<String> lines = FileUtilities.readTextFile("data/news-notifications.txt");
 
-                          for(String id : chatIDs){
+                          for(String pair : lines) {
 
-                              Chat chat = skype.getOrLoadChat(id);
+                              String[] split = pair.split(",");
 
-                              chat.sendMessage(Message.create()
-                                      .with(Text.rich(news[0]).withBold())
-                                      .with(Text.NEW_LINE)
-                                      .with(Text.rich(news[3]).withItalic()));
+                              if(split[1].equals("true")){
 
-                              chat.sendMessage(news[1]);
+                                  Chat chat = skype.getOrLoadChat(split[0]);
+
+                                  chat.sendMessage(Message.create()
+                                          .with(Text.rich(news[0]).withBold())
+                                          .with(Text.NEW_LINE)
+                                          .with(Text.rich(news[3]).withItalic()));
+
+                                  chat.sendMessage(news[1]);
+                              }
 
                           }
+
                       }
                   }
 

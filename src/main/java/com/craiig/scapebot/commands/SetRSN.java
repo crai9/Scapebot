@@ -26,10 +26,10 @@ public class SetRSN extends Command {
     @Override
     public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
 
-        String rsn = msg.getContent().asPlaintext().replace("!setrsn", "").trim();
+        String rsn = msg.getContent().asPlaintext().replace("!" + trigger, "").trim();
 
         if(rsn.contains(",") || rsn.length() < 1){
-            msg.getChat().sendMessage("Invalid RSN");
+            msg.getChat().sendMessage("Use !setrsn <your rsn> to register your rsn with the bot.");
             return;
         }
 
