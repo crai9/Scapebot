@@ -42,6 +42,7 @@ public class CommandListener implements Listener {
         commands.add(new Emotes());
         commands.add(new Wiki());
         commands.add(new ToggleNews());
+        commands.add(new Tier90());
 
     }
 
