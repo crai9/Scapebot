@@ -4,6 +4,7 @@ import com.samczsun.skype4j.Skype;
 import com.samczsun.skype4j.events.EventHandler;
 import com.samczsun.skype4j.events.Listener;
 import com.samczsun.skype4j.events.chat.message.MessageEvent;
+import com.samczsun.skype4j.events.chat.message.MessageReceivedEvent;
 import com.samczsun.skype4j.exceptions.ConnectionException;
 
 import java.util.Random;
@@ -27,7 +28,7 @@ public class ChatListener implements Listener {
     }
 
     @EventHandler
-    public void onMessage(MessageEvent e) {
+    public void onMessage(MessageReceivedEvent e) {
 
         try {
 

@@ -5,6 +5,7 @@ import com.samczsun.skype4j.Skype;
 import com.samczsun.skype4j.events.EventHandler;
 import com.samczsun.skype4j.events.Listener;
 import com.samczsun.skype4j.events.chat.message.MessageEvent;
+import com.samczsun.skype4j.events.chat.message.MessageReceivedEvent;
 import com.samczsun.skype4j.exceptions.ConnectionException;
 
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class CommandListener implements Listener {
     }
 
     @EventHandler
-    public void onMessage(MessageEvent e) {
+    public void onMessages(MessageReceivedEvent e) {
 
         try {
 
