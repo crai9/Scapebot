@@ -6,7 +6,6 @@ import com.samczsun.skype4j.participants.User;
 
 import java.util.List;
 
-import static com.craiig.scapebot.utilities.CommonUtilities.log;
 import static com.craiig.scapebot.utilities.CommonUtilities.participantToUser;
 
 
@@ -24,7 +23,7 @@ public class Shutdown extends Command {
 
         if(participantToUser(msg.getSender()).getUsername().equals("theoptimisticcow")){
             msg.getChat().sendMessage("Shutting down");
-            log("Logging out");
+            System.out.println("Logging out");
             msg.getClient().logout();
         } else {
             msg.getChat().sendMessage("Admin only command.");

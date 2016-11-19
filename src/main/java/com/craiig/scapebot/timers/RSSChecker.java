@@ -1,6 +1,5 @@
 package com.craiig.scapebot.timers;
 
-import static com.craiig.scapebot.utilities.CommonUtilities.log;
 import com.craiig.scapebot.utilities.FileUtilities;
 import com.samczsun.skype4j.Skype;
 import com.samczsun.skype4j.chat.Chat;
@@ -86,7 +85,7 @@ public class RSSChecker {
                           //Not been written to before
 
                           FileUtilities.writeToTextFile("data", "/news.txt", data);
-                          log(data);
+                          System.out.println(data);
                       }
 
                       fresh.add(data);
@@ -98,7 +97,7 @@ public class RSSChecker {
                   fresh.removeAll(existing);
 
                   if(fresh.size() > 0){
-                      log("Number of new articles: " + fresh.size());
+                      System.out.println("Number of new articles: " + fresh.size());
                   }
 
                   //Lots of weird links, skip it

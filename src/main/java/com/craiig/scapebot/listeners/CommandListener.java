@@ -4,18 +4,12 @@ import com.craiig.scapebot.commands.*;
 import com.samczsun.skype4j.Skype;
 import com.samczsun.skype4j.events.EventHandler;
 import com.samczsun.skype4j.events.Listener;
-import com.samczsun.skype4j.events.chat.message.MessageEvent;
 import com.samczsun.skype4j.events.chat.message.MessageReceivedEvent;
 import com.samczsun.skype4j.exceptions.ConnectionException;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.craiig.scapebot.utilities.CommonUtilities.log;
-/**
- * Created by Craig on 01/03/2016, 21:05, 01:16.
-
- */
 
 public class CommandListener implements Listener {
 
@@ -88,7 +82,7 @@ public class CommandListener implements Listener {
             return;
 
         } catch (ConnectionException ex) {
-            log(ex.getMessage());
+            System.out.println(ex.getMessage());
         }
 
 

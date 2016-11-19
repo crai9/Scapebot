@@ -9,7 +9,7 @@ import com.samczsun.skype4j.exceptions.ConnectionException;
 
 import java.util.Random;
 
-import static com.craiig.scapebot.utilities.CommonUtilities.log;
+import static com.craiig.scapebot.utilities.CommonUtilities.logMessage;
 import static com.craiig.scapebot.utilities.CommonUtilities.participantToUser;
 
 /**
@@ -40,7 +40,7 @@ public class ChatListener implements Listener {
             //how to deal with responses being updated dynamically?
             //how to add new words and reload list?
 
-            log(ANSI_GREEN + "'" + e.getMessage().getContent() + "'" + ANSI_RESET + " sent by " + participantToUser(e.getMessage().getSender()).getUsername() + " in (" + e.getMessage().getSender().getChat().getIdentity() + ")");
+            logMessage(e.getMessage().getContent().asPlaintext(), participantToUser(e.getMessage().getSender()).getUsername());
 
             if(!e.getMessage().getContent().asPlaintext().startsWith("!") && !participantToUser(e.getMessage().getSender()).getUsername().equals(skype.getUsername())){
 
@@ -55,7 +55,7 @@ public class ChatListener implements Listener {
             }
 
         } catch (ConnectionException ex) {
-            log(ex.getMessage());
+            System.out.println(ex.getMessage());
         }
 
     }

@@ -22,6 +22,8 @@ import java.util.concurrent.TimeUnit;
 
 public class CommonUtilities {
 
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_RESET = "\u001B[0m";
 
     public static String convertStreamToString(java.io.InputStream is) {
         java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
@@ -39,10 +41,10 @@ public class CommonUtilities {
 
         }
         catch (MalformedURLException e) {
-            log("Malformed URL: " + e.getMessage());
+            System.out.println("Malformed URL: " + e.getMessage());
         }
         catch (IOException e) {
-            log("I/O Error: " + e.getMessage());
+            System.out.println("I/O Error: " + e.getMessage());
         }
         return "Not available";
 
@@ -97,10 +99,10 @@ public class CommonUtilities {
         return null;
     }
 
-    public static void log(String msg){
-        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
+    public static void logMessage(String msg, String sender){
+        SimpleDateFormat sdf = new SimpleDateFormat("kk:mm:ss");
         Date date = new Date();
-        System.out.println(sdf.format(date) + ": " + msg);
+        System.out.println(ANSI_GREEN + "[" + sdf.format(date) + " ~ " + sender + "] " + ANSI_RESET + msg);
     }
 
     public static String parseXP(String line){

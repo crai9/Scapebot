@@ -1,6 +1,5 @@
 package com.craiig.scapebot;
 
-import static com.craiig.scapebot.utilities.CommonUtilities.log;
 import com.craiig.scapebot.listeners.ChatListener;
 import com.craiig.scapebot.listeners.CommandListener;
 import com.craiig.scapebot.listeners.ContactRequestListener;
@@ -18,11 +17,6 @@ import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
-/**
- * Created by Craig on 01/03/2016, 16:03.
-
- */
 
 class Main {
 
@@ -54,7 +48,7 @@ class Main {
 
                         newSkype.login();
 
-                        log("Logged in");
+                        System.out.println("Logged in");
 
                         newSkype.getEventDispatcher().registerListener(new ChatListener(newSkype));
                         newSkype.getEventDispatcher().registerListener(new CommandListener(newSkype));
@@ -63,7 +57,7 @@ class Main {
                         try{
                             newSkype.subscribe();
                         }catch (IllegalStateException ex){
-                            log("Failed to subscribe...");
+                            System.out.println("Failed to subscribe...");
                         }
 
                         newSkype.setVisibility(Visibility.ONLINE);
@@ -76,11 +70,11 @@ class Main {
                         if (oldSkype != null) {
                             try {
                                 oldSkype.logout();
-                                log("Logged out previous instance");
+                                System.out.println("Logged out previous instance");
                                 oldSkype = null;
                                 System.gc();
                             } catch (Exception ex) {
-                                log("Error when logging out of previous instance");
+                                System.out.println("Error when logging out of previous instance");
                                 ex.printStackTrace();
                             }
                         }
