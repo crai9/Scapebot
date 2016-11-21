@@ -3,6 +3,8 @@ package com.craiig.scapebot.commands;
 import com.craiig.scapebot.utilities.FileUtilities;
 import com.samczsun.skype4j.chat.messages.ChatMessage;
 import com.samczsun.skype4j.exceptions.ConnectionException;
+import com.samczsun.skype4j.formatting.Message;
+import com.samczsun.skype4j.formatting.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +31,12 @@ public class SetRSN extends Command {
         String rsn = msg.getContent().asPlaintext().replace("!" + trigger, "").trim();
 
         if(rsn.contains(",") || rsn.length() < 1){
-            msg.getChat().sendMessage("Use !setrsn <your rsn> to register your rsn with the bot.");
+
+            msg.getChat().sendMessage(Message.create()
+                    .with(Text.rich("Use "))
+                    .with(Text.rich("!setrsn <yourRSN> ").withBold())
+                    .with(Text.rich("to store your name")));
+
             return;
         }
 

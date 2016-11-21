@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.craiig.scapebot.utilities.CommonUtilities.participantToUser;
+
 
 public class Emotes extends Command {
 
@@ -16,7 +18,9 @@ public class Emotes extends Command {
     }
 
     public String[] getAliases(){
-        return new String[] {"Kappa", "PJSalt", "FeelsGoodMan", "FeelsBadMan", "PogChamp", "TriHard", "KappaHD"};
+        return new String[] {"Kappa", "PJSalt", "FeelsGoodMan", "FeelsBadMan", "PogChamp", "TriHard", "KappaHD",
+                "BibleThump", "BrokeBack", "DansGame", "HeyGuys", "NotLikeThis", "G", "WutFace", "ResidentSleeper",
+                "FailFish", "ANELE", "CoolStoryBob", "4Head"};
     }
 
     public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
@@ -42,10 +46,26 @@ public class Emotes extends Command {
         pairs.put("pogchamp", "img/pogchamp.jpg");
         pairs.put("trihard", "img/trihard.jpg");
         pairs.put("kappahd", "img/kappahd.jpg");
+        pairs.put("biblethump", "img/biblethump.jpg");
+        pairs.put("brokeback", "img/brokeback.png");
+        pairs.put("dansgame", "img/dansgame.png");
+        pairs.put("heyguys", "img/heyguys.png");
+        pairs.put("notlikethis", "img/notlikethis.png");
+        pairs.put("g", "img/parents.jpg");
+        pairs.put("wutface", "img/wutface.png");
+        pairs.put("residentsleeper", "img/residentsleeper.png");
+        pairs.put("failfish", "img/failfish.png");
+        pairs.put("anele", "img/anele.png");
+        pairs.put("coolstorybob", "img/coolstorybob.png");
+        pairs.put("4head", "img/4head.jpg");
 
         if(pairs.containsKey(trigger)){
 
             String path = pairs.get(trigger);
+
+            if(participantToUser(msg.getSender()).getUsername().equals("gspet88")){
+                path = "img/kappapride.jpg";
+            }
 
             File emote = new File(path);
 

@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.samczsun.skype4j.chat.messages.ChatMessage;
 import com.samczsun.skype4j.exceptions.ConnectionException;
 import com.samczsun.skype4j.formatting.Message;
+import com.samczsun.skype4j.formatting.Text;
 
 import java.util.List;
 
@@ -27,7 +28,11 @@ public class Title extends Command {
 
         if(rsn == null){
             //No RSN stored
-            msg.getChat().sendMessage("No RSN supplied");
+            msg.getChat().sendMessage(Message.create()
+                    .with(Text.rich("No RSN supplied, use "))
+                    .with(Text.rich("!setrsn <yourRSN> ").withBold())
+                    .with(Text.rich("to store your name or use "))
+                    .with(Text.rich("!title <RSN>").withBold()));
             return;
         }
 

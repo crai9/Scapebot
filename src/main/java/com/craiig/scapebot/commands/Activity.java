@@ -37,7 +37,11 @@ public class Activity extends Command {
 
         if(rsn == null){
             //No RSN stored
-            msg.getChat().sendMessage("No RSN supplied");
+            msg.getChat().sendMessage(Message.create()
+                    .with(Text.rich("No RSN supplied, use "))
+                    .with(Text.rich("!setrsn <yourRSN> ").withBold())
+                    .with(Text.rich("to store your name or use "))
+                    .with(Text.rich("!activity <RSN>").withBold()));
             return;
         }
 
