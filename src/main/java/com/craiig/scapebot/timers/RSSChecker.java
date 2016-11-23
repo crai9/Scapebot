@@ -56,6 +56,7 @@ public class RSSChecker {
               try {
 
                   URL url = new URL("http://services.runescape.com/m=news/latest_news.rss");
+                  //URL url = new URL("http://crai9.xyz/news.xml");
 
                   HttpURLConnection httpcon = (HttpURLConnection)url.openConnection();
 
