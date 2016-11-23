@@ -18,6 +18,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
 
+import static com.craiig.scapebot.utilities.CommonUtilities.logSysMessage;
+
 /**
  * Created by craig on 02/03/2016, 13:54.
 
@@ -86,7 +88,8 @@ public class RSSChecker {
                           //Not been written to before
 
                           FileUtilities.writeToTextFile("data", "/news.txt", data);
-                          System.out.println(data);
+                          logSysMessage(data, "System");
+
                       }
 
                       fresh.add(data);
@@ -98,7 +101,7 @@ public class RSSChecker {
                   fresh.removeAll(existing);
 
                   if(fresh.size() > 0){
-                      System.out.println("Number of new articles: " + fresh.size());
+                      logSysMessage("Number of new articles: " + fresh.size(), "System");
                   }
 
                   //Lots of weird links, skip it

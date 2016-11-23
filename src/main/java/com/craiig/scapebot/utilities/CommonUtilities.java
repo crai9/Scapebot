@@ -23,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 public class CommonUtilities {
 
     public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_RESET = "\u001B[0m";
 
@@ -111,6 +112,12 @@ public class CommonUtilities {
         SimpleDateFormat sdf = new SimpleDateFormat("kk:mm:ss");
         Date date = new Date();
         System.out.println(ANSI_RED + "[" + sdf.format(date) + " ~ " + sender + "] " + ANSI_RESET + msg);
+    }
+
+    public static void logSysMessage(String msg, String sender){
+        SimpleDateFormat sdf = new SimpleDateFormat("kk:mm:ss");
+        Date date = new Date();
+        System.out.println(ANSI_YELLOW + "[" + sdf.format(date) + " ~ " + sender + "] " + ANSI_RESET + msg);
     }
 
     public static String parseXP(String line){

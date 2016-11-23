@@ -19,6 +19,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import static com.craiig.scapebot.utilities.CommonUtilities.logSysMessage;
+
 class Main {
 
     public static void main(String[] args) {
@@ -49,7 +51,7 @@ class Main {
 
                         newSkype.login();
 
-                        System.out.println("Logged in");
+                        logSysMessage("Logged in to new instance", "System");
 
                         newSkype.getEventDispatcher().registerListener(new ChatListener(newSkype));
                         newSkype.getEventDispatcher().registerListener(new SentMessageListener(newSkype));
@@ -59,7 +61,7 @@ class Main {
                         try{
                             newSkype.subscribe();
                         }catch (IllegalStateException ex){
-                            System.out.println("Failed to subscribe...");
+                            logSysMessage("Failed to subscribe...", "System");
                         }
 
                         newSkype.setVisibility(Visibility.ONLINE);
@@ -72,11 +74,11 @@ class Main {
                         if (oldSkype != null) {
                             try {
                                 oldSkype.logout();
-                                System.out.println("Logged out previous instance");
+                                logSysMessage("Logged out previous instance", "System");
                                 oldSkype = null;
                                 System.gc();
                             } catch (Exception ex) {
-                                System.out.println("Error when logging out of previous instance");
+                                logSysMessage("Error when logging out of previous instance", "System");
                                 ex.printStackTrace();
                             }
                         }
