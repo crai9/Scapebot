@@ -50,6 +50,15 @@ public class ChatListener implements Listener {
                     e.getChat().sendMessage(responses[rand.nextInt((2) + 1)]);
                 }
 
+                if(e.getMessage().getContent().asPlaintext().toLowerCase().contains("greg") && !e.getMessage().getContent().asPlaintext().toLowerCase().contains("http")){
+
+                    String[] responses = {"Oh boy", "Oh boy", "Oh boy", "Oh boy", "wej"};
+                    Random rand = new Random();
+
+                    if(rand.nextInt((8) + 1) == 0){
+                        e.getChat().sendMessage(responses[rand.nextInt((4) + 1)]);
+                    }
+                }
             }
 
         } catch (ConnectionException ex) {
