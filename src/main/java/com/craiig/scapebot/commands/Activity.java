@@ -28,7 +28,8 @@ public class Activity extends Command {
     }
 
     public String[] getAliases(){
-        return new String[] {"bork-log", "fury-log", "borklog", "furylog", "bork", "borkcounter", "bork-counter"};
+        return new String[] {"bork-log", "fury-log", "borklog", "furylog", "bork", "borkcounter", "bork-counter",
+                "alog", "a-log"};
     }
 
     public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {

@@ -7,6 +7,8 @@ import com.samczsun.skype4j.events.contact.ContactRequestEvent;
 import com.samczsun.skype4j.exceptions.ChatNotFoundException;
 import com.samczsun.skype4j.exceptions.ConnectionException;
 
+import static com.craiig.scapebot.utilities.CommonUtilities.logSysMessage;
+
 
 public class ContactRequestListener implements Listener {
 
@@ -25,7 +27,7 @@ public class ContactRequestListener implements Listener {
 
             String username = e.getRequest().getSender().getUsername();
             e.getRequest().accept();
-            System.out.println("Accepted FR from: " + username);
+            logSysMessage("Accepted FR from: " + username, "System");
 
             //wait for Skype to catch up
             Thread.sleep(6000L);

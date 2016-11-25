@@ -2,6 +2,8 @@ package com.craiig.scapebot.commands;
 
 import com.samczsun.skype4j.chat.messages.ChatMessage;
 import com.samczsun.skype4j.exceptions.ConnectionException;
+import com.samczsun.skype4j.formatting.Message;
+import com.samczsun.skype4j.formatting.Text;
 
 import java.util.List;
 
@@ -21,7 +23,9 @@ public class Wiki extends Command {
         String query = msg.getContent().asPlaintext().replace("!" + trigger, "").trim();
 
         if(query.length() < 1){
-            msg.getChat().sendMessage("To search RuneScape Wiki, use: !wiki <query>");
+            msg.getChat().sendMessage(Message.create()
+                    .with(Text.rich("To search RuneScape Wiki, use: "))
+                    .with(Text.rich("!wiki <query> ").withBold()));
             return;
         }
 
