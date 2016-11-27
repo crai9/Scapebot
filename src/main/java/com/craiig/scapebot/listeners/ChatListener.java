@@ -47,7 +47,9 @@ public class ChatListener implements Listener {
                     String[] responses = {"Congrats! (rock)", "Gzz! (clap)", "Grats!! (party)"};
                     Random rand = new Random();
 
-                    e.getChat().sendMessage(responses[rand.nextInt((2) + 1)]);
+                    if(rand.nextInt((8) + 1) == 0){
+                        e.getChat().sendMessage(responses[rand.nextInt((2) + 1)]);
+                    }
                 }
 
                 if(e.getMessage().getContent().asPlaintext().toLowerCase().contains("greg") && !e.getMessage().getContent().asPlaintext().toLowerCase().contains("http")){
