@@ -41,7 +41,6 @@ public class CommonUtilities {
 
             return convertStreamToString(url.openStream());
 
-
         }
         catch (MalformedURLException e) {
             System.out.println("Malformed URL: " + e.getMessage());

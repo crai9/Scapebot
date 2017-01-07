@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.craiig.scapebot.utilities.CommonUtilities.getTextFromUrl;
+import static com.craiig.scapebot.utilities.CommonUtilities.logSysMessage;
 
 public class Tier90 extends Command {
 
@@ -35,6 +36,7 @@ public class Tier90 extends Command {
             Elements results = searchResults.select(".thread-plate__title-link");
             String relLink = results.first().attr("href");
             String lastPageLink = forumBaseUrl + relLink + ",goto,1000";
+            logSysMessage(lastPageLink, "test");
 
             Document lastThreadPage = Jsoup.parse(getTextFromUrl(lastPageLink));
             String secondLastRelLink = lastThreadPage.select(".previous").first().attr("href");
@@ -66,6 +68,7 @@ public class Tier90 extends Command {
             }
 
         }catch (NullPointerException ex){
+            msg.getChat().sendMessage("Couldn't find thread :(");
             System.out.println("Couldn't find thread :(");
         }
     }
