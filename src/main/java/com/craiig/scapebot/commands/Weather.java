@@ -24,7 +24,6 @@ public class Weather extends Command {
     public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
 
         String query = msg.getContent().asPlaintext().replace("!" + trigger, "").trim().replace(" ", "+");
-        System.out.println(query);
         if(query.length() < 1){
             msg.getChat().sendMessage(Message.create()
                     .with(Text.rich("No weather location queried, use "))
@@ -34,9 +33,9 @@ public class Weather extends Command {
         }
 
         String apiUrl = "http://api.openweathermap.org/data/2.5/weather?appid=5c3e4522d66a32d7924c5f0357a8c48c&units=metric&q=" + query;
-        System.out.println(apiUrl);
         String response = "";
         String status = "";
+        String tempEmoji = "";
 
         try {
 
@@ -53,6 +52,12 @@ public class Weather extends Command {
                 status = details.getWeather().get(0).getMain();
             }
 
+            if(details.getMain().getTemp() < -5){
+                tempEmoji = "(shivering)";
+            } else if (details.getMain().getTemp() > 35){
+                tempEmoji = "(sweating)";
+            }
+
             msg.getChat().sendMessage(Message.create()
                     .with(Text.rich("Current Weather for "))
                     .with(Text.rich(details.getName() + ", " + details.getSys().getCountry()).withBold())
@@ -61,7 +66,7 @@ public class Weather extends Command {
                     .with(Text.rich(status + " (" + details.getWeather().get(0).getDescription() + ")"))
                     .with(Text.NEW_LINE)
                     .with(Text.rich("Temp: "))
-                    .with(Text.rich(details.getMain().getTemp().toString() + "°C"))
+                    .with(Text.rich(details.getMain().getTemp().toString() + "°C " + tempEmoji))
                     .with(Text.NEW_LINE)
                     .with(Text.rich("Humidity: "))
                     .with(Text.rich(details.getMain().getHumidity().toString() + "%"))
@@ -75,9 +80,10 @@ public class Weather extends Command {
 
 
         } catch (Exception ex){
+
             System.out.println(ex.getMessage());
             msg.getChat().sendMessage(Message.create()
-                    .with(Text.rich("Weather location not found!").withBold())
+                    .with(Text.rich("Couldn't find weather for '" + query + "'.").withBold())
             );
 
         }

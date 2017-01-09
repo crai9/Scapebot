@@ -40,6 +40,7 @@ public class CommandListener implements Listener {
         commands.add(new Tier90());
         commands.add(new Weather());
         commands.add(new Roll());
+        commands.add(new Count());
 
     }
 
