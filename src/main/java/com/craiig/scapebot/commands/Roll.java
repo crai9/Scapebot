@@ -47,6 +47,14 @@ public class Roll extends Command {
             } else if (split.length >= 2) {
                 lowerLimit = Integer.parseInt(split[0]);
                 upperLimit = Integer.parseInt(split[1]);
+
+                if(lowerLimit > upperLimit){
+                    int tempU = upperLimit;
+                    int tempL = lowerLimit;
+
+                    upperLimit = tempL;
+                    lowerLimit = tempU;
+                }
             }
 
         }catch (NumberFormatException ex){

@@ -54,8 +54,8 @@ public class Weather extends Command {
 
             if(details.getMain().getTemp() < -5){
                 tempEmoji = "(shivering)";
-            } else if (details.getMain().getTemp() > 35){
-                tempEmoji = "(sweating)";
+            } else if (details.getMain().getTemp() > 30){
+                tempEmoji = "(sweat)";
             }
 
             msg.getChat().sendMessage(Message.create()
