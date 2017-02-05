@@ -5,6 +5,10 @@ package com.craiig.scapebot.utilities;
 
  */
 
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import com.samczsun.skype4j.chat.messages.ChatMessage;
 import com.samczsun.skype4j.participants.Participant;
 import com.samczsun.skype4j.participants.User;
@@ -31,6 +35,26 @@ public class CommonUtilities {
     public static String convertStreamToString(java.io.InputStream is) {
         java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
         return s.hasNext() ? s.next() : "";
+    }
+
+    public static String getUrbanDictionaryResponse(String word){
+
+        try {
+
+            HttpResponse<String> response = Unirest.get("https://mashape-community-urban-dictionary.p.mashape.com/define")
+                    .header("X-Mashape-Key", "pwAeAD5uYDmshDxM0qX4YUbGo16Op1aGj44jsnTbGRyTT1Jlf1")
+                    .queryString("term", word)
+                    .header("Accept", "text/plain")
+                    .asString();
+
+            return response.getBody();
+
+        } catch (UnirestException ex){
+            System.out.println(ex.getMessage());
+        }
+
+        return "Not available";
+
     }
 
     public static String getTextFromUrl(String site) {

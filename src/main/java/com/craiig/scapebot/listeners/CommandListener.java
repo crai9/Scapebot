@@ -41,6 +41,8 @@ public class CommandListener implements Listener {
         commands.add(new Weather());
         commands.add(new Roll());
         commands.add(new Count());
+        commands.add(new UrbanDictionary());
+        commands.add(new Price());
 
     }
 

@@ -26,13 +26,14 @@ public class Commands extends Command {
             String response = "Available commands are: ";
 
             for(Command cmd: commands){
-                response += cmd.getName() + ", ";
-
+                if(!cmd.getName().equals("")){
+                    response += cmd.getName() + ", ";
+                }
             }
 
             response = response.substring(0, response.length()-2) + ".";
-
             msg.getChat().sendMessage(response);
+
             return;
 
 
