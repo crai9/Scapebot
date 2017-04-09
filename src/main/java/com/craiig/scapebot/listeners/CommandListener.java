@@ -22,6 +22,7 @@ public class CommandListener implements Listener {
 
         //TODO: Probably order these by most used, should speed things up
 
+        commands.add(new Emotes());
         commands.add(new Commands());
         commands.add(new Activity());
         commands.add(new VoiceOfSeren());
@@ -34,7 +35,6 @@ public class CommandListener implements Listener {
         commands.add(new ActivityPlus());
         commands.add(new Clan());
         commands.add(new Title());
-        commands.add(new Emotes());
         commands.add(new Wiki());
         commands.add(new ToggleNews());
         commands.add(new Tier90());
@@ -43,6 +43,9 @@ public class CommandListener implements Listener {
         commands.add(new Count());
         commands.add(new UrbanDictionary());
         commands.add(new Price());
+        //commands.add(new Experience());
+        //commands.add(new Profile());
+        //commands.add(new Skill());
 
     }
 

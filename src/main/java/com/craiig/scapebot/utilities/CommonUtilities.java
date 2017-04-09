@@ -102,7 +102,7 @@ public class CommonUtilities {
     public static String getRSN(String username, ChatMessage message, String trigger){
 
         if(message.getContent().asPlaintext().length() > trigger.length() + 2){
-            return message.getContent().asPlaintext().replace("!" + trigger + " ", "");
+            return message.getContent().asPlaintext().toLowerCase().replace("!" + trigger + " ", "");
         }
 
         ArrayList<String> existing = FileUtilities.readTextFile("data/rsn.txt");
@@ -148,8 +148,20 @@ public class CommonUtilities {
         String[] sections = line.split("XP");
         try {
 
-            String formatted = NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(sections[0]));
+            String formatted = NumberFormat.getNumberInstance(Locale.US).format(Long.parseLong(sections[0]));
             return formatted + "XP" + sections[1];
+
+        } catch (NumberFormatException e) {
+            return line;
+        }
+    }
+
+
+    public static String parseXPPlain(String line){
+
+        try {
+
+            return NumberFormat.getNumberInstance(Locale.US).format(Long.parseLong(line));
 
         } catch (NumberFormatException e) {
             return line;

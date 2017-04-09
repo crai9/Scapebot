@@ -28,7 +28,9 @@ public class SetRSN extends Command {
     @Override
     public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
 
-        String rsn = msg.getContent().asPlaintext().replace("!" + trigger, "").trim();
+        //String rsn = msg.getContent().asPlaintext().replace("!" + trigger, "").trim();
+        String rsn = msg.getContent().asPlaintext().toLowerCase().replace("!" + trigger, "").trim();
+
 
         if(rsn.contains(",") || rsn.length() < 1){
 

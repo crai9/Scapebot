@@ -29,7 +29,7 @@ public class ActivityPlus extends Command {
     }
 
     public String[] getAliases(){
-        return new String[] {};
+        return new String[] {"a-log+", "alog+"};
     }
 
     public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
@@ -64,14 +64,23 @@ public class ActivityPlus extends Command {
                 Iterator itEntries = entries.iterator();
 
                 String message = "";
+                int count = -1;
 
                 while (itEntries.hasNext()) {
 
+                    count++;
+                    if(count == 0){
+                        itEntries.next();
+                    }
+
                     SyndEntry entry = (SyndEntry) itEntries.next();
-                    message += "<b>" + parseXP(entry.getTitle()) + "</b>";
-                    message += parseXP(entry.getDescription().getValue()) + System.lineSeparator();
+                    message += "<b>" + parseXP(entry.getTitle().trim()) + "</b>" + System.lineSeparator();
+                    message += parseXP(entry.getDescription().getValue().trim()) + System.lineSeparator();
 
                 }
+
+                //message += "<b>" + "I found a Vitalis" + "</b>" + System.lineSeparator();
+                //message += "After killing a Vorago, it dropped a Vitalis." + System.lineSeparator();
 
                 msg.getChat().sendMessage(Message.fromHtml(message));
 

@@ -15,6 +15,11 @@
             <version>master-v0.1.5-gc47d7b8-40</version>
         </dependency>
         <dependency>
+            <groupId>com.jakewharton.fliptables</groupId>
+            <artifactId>fliptables</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.3.6</version>

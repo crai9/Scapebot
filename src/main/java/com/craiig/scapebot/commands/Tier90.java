@@ -30,12 +30,13 @@ public class Tier90 extends Command {
         String searchURL = "http://services.runescape.com/m=forum/sl=0/searchthreads.ws?search=submit&srcstr=High%20Level%20Weapon%20Status";
         String forumBaseUrl = "http://services.runescape.com/m=forum/sl=0/";
         Document searchResults = Jsoup.parse(getTextFromUrl(searchURL));
+        String lastPageLink = null;
 
         try{
 
             Elements results = searchResults.select(".thread-plate__title-link");
             String relLink = results.first().attr("href");
-            String lastPageLink = forumBaseUrl + relLink + ",goto,1000";
+            lastPageLink = forumBaseUrl + relLink + ",goto,1000";
             logSysMessage(lastPageLink, "test");
 
             Document lastThreadPage = Jsoup.parse(getTextFromUrl(lastPageLink));
@@ -68,8 +69,16 @@ public class Tier90 extends Command {
             }
 
         }catch (NullPointerException ex){
+
+            if(!lastPageLink.isEmpty()){
+                msg.getChat().sendMessage(Message.fromHtml("Couldn't retrieve post"
+                        + System.lineSeparator() + "<a href='"
+                        + lastPageLink
+                        + "'>Here's the thread</a>"));
+                return;
+            }
+
             msg.getChat().sendMessage("Couldn't find thread :(");
-            System.out.println("Couldn't find thread :(");
         }
     }
 

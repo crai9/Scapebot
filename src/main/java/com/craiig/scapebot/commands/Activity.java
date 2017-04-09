@@ -28,9 +28,7 @@ public class Activity extends Command {
     }
 
     public String[] getAliases(){
-        return new String[] {"bork-log", "fury-log", "borklog", "furylog", "bork", "borkcounter", "bork-counter",
-                "alog", "a-log"};
-    }
+        return new String[] {"alog", "a-log"};}
 
     public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
 
@@ -64,13 +62,21 @@ public class Activity extends Command {
                 Iterator itEntries = entries.iterator();
 
                 String message = "";
+                int count = -1;
 
                 while (itEntries.hasNext()) {
+
+                    count++;
+                    if(count == 0){
+                        itEntries.next();
+                    }
 
                     SyndEntry entry = (SyndEntry) itEntries.next();
                     message += parseXP(entry.getTitle()) + System.lineSeparator();
 
                 }
+
+                //message += "I found a Vitalis" + System.lineSeparator();
 
                 msg.getChat().sendMessage(Message.fromHtml(message));
 
