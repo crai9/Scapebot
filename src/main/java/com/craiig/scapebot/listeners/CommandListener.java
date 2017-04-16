@@ -58,6 +58,10 @@ public class CommandListener implements Listener {
 
                 String command = e.getMessage().getContent().asPlaintext().trim().substring(1).split(" ")[0].toLowerCase();
 
+                if(command.isEmpty()){
+                    return;
+                }
+
                 for(Command cmd : commands){
                     if(command.equals(cmd.getName())){
 
