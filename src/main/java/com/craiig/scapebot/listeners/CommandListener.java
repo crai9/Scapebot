@@ -43,6 +43,7 @@ public class CommandListener implements Listener {
         commands.add(new Count());
         commands.add(new UrbanDictionary());
         commands.add(new Price());
+        commands.add(new VisWax());
         //commands.add(new Experience());
         //commands.add(new Profile());
         //commands.add(new Skill());
