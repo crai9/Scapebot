@@ -25,8 +25,6 @@ public class Tier90 extends Command {
 
     public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
 
-        long startTime = System.nanoTime();
-
         String searchURL = "http://services.runescape.com/m=forum/sl=0/searchthreads.ws?search=submit&srcstr=High%20Level%20Weapon%20Status";
         String forumBaseUrl = "http://services.runescape.com/m=forum/sl=0/";
         Document searchResults = Jsoup.parse(getTextFromUrl(searchURL));
@@ -37,7 +35,6 @@ public class Tier90 extends Command {
             Elements results = searchResults.select(".thread-plate__title-link");
             String relLink = results.first().attr("href");
             lastPageLink = forumBaseUrl + relLink + ",goto,1000";
-            logSysMessage(lastPageLink, "test");
 
             Document lastThreadPage = Jsoup.parse(getTextFromUrl(lastPageLink));
             String secondLastRelLink = lastThreadPage.select(".previous").first().attr("href");
@@ -51,22 +48,30 @@ public class Tier90 extends Command {
             all.addAll(secondLastPagePosts);
             all.addAll(lastPagePosts);
             Collections.reverse(all);
-            
+
             for (Element e: all) {
 
-                if(countNumbersInString(e.text()) >= 40){
+                if(countNumbersInString(e.text()) >= 41){
 
                     String time = "<u><b>Time posted: " + e.parent().nextElementSibling().text() + "</b></u>\n\n";
                     String contents = e.html().replace("\n", "").replace("<br>", "\n");
-                    long endTime = System.nanoTime();
-                    long duration = (endTime - startTime) / 1000000;
-                    String disclaimer = "\n<i>" + "[Beta command - Execution time: " + duration + "ms]</i>";
+
+                    String disclaimer = "\n<i><a href='"
+                            + lastPageLink
+                            + "'>Incorrect? Here's the thread</a></i>";
 
                     msg.getChat().sendMessage(Message.fromHtml(time + contents + disclaimer));
 
                     return;
                 }
             }
+
+
+            msg.getChat().sendMessage(Message.fromHtml("Couldn't retrieve post"
+                    + System.lineSeparator() + "<a href='"
+                    + lastPageLink
+                    + "'>Here's the thread</a>"));
+            return;
 
         }catch (NullPointerException ex){
 

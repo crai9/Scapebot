@@ -24,38 +24,34 @@ public class VisWax extends Command {
 
     public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
 
-
-        String pageURL = "http://warbandtracker.com/goldberg/index.php";
+        String pageURL = "http://services.runescape.com/m=forum/forums.ws?75,76,387,65763383";
         Document searchResults = Jsoup.parse(getTextFromUrl(pageURL));
+        String message = "";
 
         try{
 
-            Element table = searchResults.select(".contentBlock#cape").first();
-            Elements imgs = table.getElementsByTag("img");
+            Elements posts = searchResults.select(".forum-post__body");
+            String prepared = posts.get(1).html()
+                    .replace("\n", "")
+                    .replace("<br>", "\n")
+                    .replace("\n . \n", "\n")
+                    .replace("\n \n", "\n")
+                    .replace("\n\n", "\n")
+                    .replace("Slot", "\nSlot")
+                    .split("Alternative runes")[0];
 
-            String message = "First rune: <b>"
-                    + imgs.get(0).attr("alt")
-                    + "</b>"
-                    + "Second rune: <b>"
-                    + imgs.get(1).attr("alt")
-                    + imgs.get(2).attr("alt")
-                    + imgs.get(3).attr("alt")
-                    + "</b>";
 
-            message = message.replace("\r\n", " ");
-            message = message.replace("Reported by ", "(");
-            message = message.replace("Second ", "Second ");
-            message = message.replace("%.", "%)\n");
-            message += "\nData taken from <a href='" + pageURL +"'>warbandtracker.com</a>.";
+            String[] parts = prepared.split("Slot 1:");
+            message = "<b>" + parts[0] + "</b> Slot 1:" + parts[1];
 
             msg.getChat().sendMessage(Message.fromHtml(message));
 
         }catch (NullPointerException ex){
 
             msg.getChat().sendMessage(Message.fromHtml(
-                    "Couldn't find combo :( \n try <a href='"
+                    "Couldn't find combo :(\ntry <a href='"
                     + pageURL
-                    + "'>warbandtracker.com</a>.")
+                    + "'>this thread</a>.")
             );
         }
     }
