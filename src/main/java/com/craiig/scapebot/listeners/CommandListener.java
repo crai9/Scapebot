@@ -25,6 +25,9 @@ public class CommandListener implements Listener {
         commands.add(new Emotes());
         commands.add(new Commands());
         commands.add(new Activity());
+        commands.add(new ActivityPlus());
+        commands.add(new Last5());
+        commands.add(new Last5Plus());
         commands.add(new VoiceOfSeren());
         commands.add(new Warbands());
         commands.add(new Shutdown());
@@ -32,7 +35,6 @@ public class CommandListener implements Listener {
         commands.add(new Vorago());
         commands.add(new Araxxor());
         commands.add(new RiseOfTheSix());
-        commands.add(new ActivityPlus());
         commands.add(new Clan());
         commands.add(new Title());
         commands.add(new Wiki());

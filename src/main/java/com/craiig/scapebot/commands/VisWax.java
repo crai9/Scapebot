@@ -40,7 +40,6 @@ public class VisWax extends Command {
                     .replace("Slot", "\nSlot")
                     .split("Alternative runes")[0];
 
-
             String[] parts = prepared.split("Slot 1:");
             message = "<b>" + parts[0] + "</b> Slot 1:" + parts[1];
 
