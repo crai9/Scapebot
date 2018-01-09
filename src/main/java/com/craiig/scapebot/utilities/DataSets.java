@@ -101,6 +101,12 @@ public class DataSets {
         pairs.put("hahaa", "img/hahaa.jpg");
         pairs.put("lul", "img/lul.png");
         pairs.put("thinking", "img/thinking.png");
+        pairs.put("kkona", "img/kkona.png");
+        pairs.put("babyrage", "img/babyrage.png");
+        pairs.put("punoko", "img/punoko.png");
+        pairs.put("koncha", "img/koncha.png");
+        pairs.put("jebaited", "img/jebaited.jpg");
+        pairs.put("poggers", "img/poggers.jpg");
 
         return pairs;
     }
