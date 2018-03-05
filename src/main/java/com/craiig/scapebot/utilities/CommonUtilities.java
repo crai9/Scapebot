@@ -5,6 +5,7 @@ package com.craiig.scapebot.utilities;
 
  */
 
+import com.craiig.scapebot.models.StringPair;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -37,8 +38,28 @@ public class CommonUtilities {
         return s.hasNext() ? s.next() : "";
     }
 
+    public static String getTextFromPostUrl(String url, StringPair queryString, StringPair field){
+
+        try {
+
+            HttpResponse<String> response = Unirest.post(url)
+                    .header("Accept", "text/plain")
+                    .queryString(queryString.key(), queryString.value())
+                    .field(field.key(), field.value())
+                    .asString();
+
+            return response.getBody();
+
+        } catch (UnirestException ex){
+            System.out.println(ex.getMessage());
+        }
+
+        return "Problem with getTextFromPostUrl...";
+    }
+
     public static String getUrbanDictionaryResponse(String word){
 
+        //not really common
         try {
 
             HttpResponse<String> response = Unirest.get("https://mashape-community-urban-dictionary.p.mashape.com/define")

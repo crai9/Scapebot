@@ -15,6 +15,7 @@ import com.samczsun.skype4j.exceptions.InvalidCredentialsException;
 import com.samczsun.skype4j.exceptions.NotParticipatingException;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -25,6 +26,8 @@ class Main {
 
     public static void main(String[] args) {
 
+        FileUtilities.emptyFile("data/uptime.txt");
+        FileUtilities.writeToTextFile("data/", "uptime.txt",new Date().getTime() + "");
         runBot();
 
     }

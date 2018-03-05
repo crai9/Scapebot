@@ -1,5 +1,6 @@
 package com.craiig.scapebot.commands;
 
+import com.craiig.scapebot.models.StringPair;
 import com.samczsun.skype4j.chat.messages.ChatMessage;
 import com.samczsun.skype4j.exceptions.ConnectionException;
 import com.samczsun.skype4j.formatting.Message;
@@ -10,6 +11,7 @@ import org.jsoup.select.Elements;
 import java.util.Collections;
 import java.util.List;
 
+import static com.craiig.scapebot.utilities.CommonUtilities.getTextFromPostUrl;
 import static com.craiig.scapebot.utilities.CommonUtilities.getTextFromUrl;
 import static com.craiig.scapebot.utilities.CommonUtilities.logSysMessage;
 
@@ -25,9 +27,15 @@ public class Tier90 extends Command {
 
     public void run(ChatMessage msg, List<Command> commands, String trigger) throws ConnectionException {
 
-        String searchURL = "http://services.runescape.com/m=forum/sl=0/searchthreads.ws?search=submit&srcstr=High%20Level%20Weapon%20Status";
+        String searchURL = "http://services.runescape.com/m=forum/forums.ws";
         String forumBaseUrl = "http://services.runescape.com/m=forum/sl=0/";
-        Document searchResults = Jsoup.parse(getTextFromUrl(searchURL));
+        String query = "High Level Weapon Status";
+
+        //Do post to get search results instead of post
+        String searchPageText = getTextFromPostUrl(searchURL, new StringPair("search", "submit"), new StringPair("uid", query));
+
+        //Document searchResults = Jsoup.parse(getTextFromUrl(searchURL));
+        Document searchResults = Jsoup.parse(searchPageText);
         String lastPageLink = null;
 
         try{
@@ -74,6 +82,8 @@ public class Tier90 extends Command {
             return;
 
         }catch (NullPointerException ex){
+
+            ex.printStackTrace();
 
             if(!lastPageLink.isEmpty()){
                 msg.getChat().sendMessage(Message.fromHtml("Couldn't retrieve post"

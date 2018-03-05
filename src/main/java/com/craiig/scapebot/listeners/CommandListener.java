@@ -46,6 +46,7 @@ public class CommandListener implements Listener {
         commands.add(new UrbanDictionary());
         commands.add(new Price());
         commands.add(new VisWax());
+        commands.add(new Debug());
         //commands.add(new Experience());
         //commands.add(new Profile());
         //commands.add(new Skill());
@@ -72,7 +73,7 @@ public class CommandListener implements Listener {
                         cmd.run(e.getMessage(), commands, cmd.getName());
                         e.getChat().stopTyping();
 
-                        skype.loadAllContacts();
+                        //skype.loadAllContacts();
                         return;
 
                     } else {
@@ -84,7 +85,7 @@ public class CommandListener implements Listener {
                                 cmd.run(e.getMessage(), commands, alias.toLowerCase());
                                 e.getChat().stopTyping();
 
-                                skype.loadAllContacts();
+                                //skype.loadAllContacts();
                                 return;
 
                             }
@@ -93,7 +94,7 @@ public class CommandListener implements Listener {
                 }
             }
 
-            skype.loadAllContacts();
+            //skype.loadAllContacts();
             return;
 
         } catch (ConnectionException ex) {
